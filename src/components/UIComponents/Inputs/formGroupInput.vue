@@ -18,10 +18,10 @@
       label: String
     },
     methods: {
-      updateValue(value) {
-        this.$emit('input', String(value));
+      updateValue (value) {
+        this.$emit('input', String(value))
       }
-  }
+    }
 }
 </script>
 <style>

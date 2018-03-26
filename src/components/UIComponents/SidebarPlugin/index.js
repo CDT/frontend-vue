@@ -4,12 +4,12 @@ const SidebarStore = {
   showSidebar: false,
   sidebarLinks: [
     {
-      name: 'Dashboard',
+      name: '仪表盘',
       icon: 'ti-panel',
       path: '/admin/overview'
     },
     {
-      name: 'User Profile',
+      name: '用户资料',
       icon: 'ti-user',
       path: '/admin/stats'
     },
