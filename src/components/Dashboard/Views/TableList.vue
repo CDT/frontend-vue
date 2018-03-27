@@ -64,8 +64,8 @@
     data () {
       return {
         table1: {
-          title: 'Stripped Table',
-          subTitle: 'Here is a subtitle for this table',
+          title: '人员信息表',
+          subTitle: '院内所有人员基本信息',
           columns: [...tableColumns],
           data: [...tableData]
         },

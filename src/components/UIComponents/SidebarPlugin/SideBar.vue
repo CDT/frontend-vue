@@ -11,9 +11,9 @@
       <div class="logo">
         <a href="#" class="simple-text">
             <div class="logo-img">
-                <img src="static/img/vue-logo.png" alt="">
+                <img src="static/img/computer.png" alt="">
             </div>
-          数据中心
+          数据查询
         </a>
       </div>
       <slot>

@@ -4,15 +4,13 @@
       <nav class="pull-left">
         <ul>
           <li>
-            <router-link :to="{path:'/admin'}">Dashboard</router-link>
+            <router-link :to="{path:'/admin'}">数据查询</router-link>
           </li>
         </ul>
       </nav>
       <div class="copyright pull-right">
-        &copy; Coded with
-        <i class="fa fa-heart heart"></i> by
-        <a href="https://github.com/cristijora" target="_blank">Cristi Jora</a>.
-        Designed by <a href="https://www.creative-tim.com/?ref=pdf-vuejs" target="_blank">Creative Tim</a>.
+        &copy; 同济医院
+        <i class="fa fa-desktop"></i> 计算机中心
       </div>
     </div>
   </footer>

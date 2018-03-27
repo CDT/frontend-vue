@@ -8,7 +8,7 @@
           <span class="icon-bar bar2"></span>
           <span class="icon-bar bar3"></span>
         </button>
-        <a class="navbar-brand">{{routeName}}</a>
+        <a class="navbar-brand">{{ getPageTitle() }}</a>
       </div>
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
@@ -42,8 +42,7 @@
   export default {
     computed: {
       routeName () {
-        const {name} = this.$route
-        return this.capitalizeFirstLetter(name)
+        return this.$route.name
       }
     },
     data () {
@@ -66,6 +65,14 @@
       },
       hideSidebar () {
         this.$sidebar.displaySidebar(false)
+      },
+      getPageTitle () {
+        return this.sidebarStore.sidebarLinks.find((element, index) => {
+          let found = element.path === this.$route.path
+          if (found) {
+            return found
+          }
+        }).name
       }
     }
   }

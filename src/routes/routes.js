@@ -24,37 +24,31 @@ const routes = [
     children: [
       {
         path: 'overview',
-        name: 'overview',
         component: Overview
       },
       {
         path: 'stats',
-        name: 'stats',
         component: UserProfile
       },
       {
         path: 'notifications',
-        name: 'notifications',
         component: Notifications
       },
       {
         path: 'icons',
-        name: 'icons',
         component: Icons
       },
       {
         path: 'maps',
-        name: 'maps',
         component: Maps
       },
       {
         path: 'typography',
-        name: 'typography',
         component: Typography
       },
       {
         path: 'table-list',
-        name: 'table-list',
+        name: '人员列表',
         component: TableList
       }
     ]

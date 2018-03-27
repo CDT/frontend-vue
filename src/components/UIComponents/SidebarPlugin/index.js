@@ -9,12 +9,7 @@ const SidebarStore = {
       path: '/admin/overview'
     },
     {
-      name: '用户资料',
-      icon: 'ti-user',
-      path: '/admin/stats'
-    },
-    {
-      name: 'Table List',
+      name: '人员列表',
       icon: 'ti-view-list-alt',
       path: '/admin/table-list'
     },
@@ -37,6 +32,11 @@ const SidebarStore = {
       name: 'Notifications',
       icon: 'ti-bell',
       path: '/admin/notifications'
+    },
+    {
+      name: '用户资料',
+      icon: 'ti-user',
+      path: '/admin/stats'
     }
   ],
   displaySidebar (value) {
