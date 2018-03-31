@@ -7,7 +7,7 @@
       </slot>
     </div>
     <div class="content table-responsive table-full-width">
-      <table class="table" :class="tableClass">
+      <table class="table table-dark" :class="tableClass">
         <thead>
           <th v-for="column in columns">{{column}}</th>
         </thead>
