@@ -7,9 +7,11 @@
       </slot>
     </div>
     <div class="content table-responsive table-full-width">
-      <table class="table table-dark" :class="tableClass">
+      <table class="table" :class="tableClass">
         <thead>
-          <th v-for="column in columns">{{column}}</th>
+          <tr>
+            <th v-for="column in columns">{{column}}</th>
+          </tr>
         </thead>
         <tbody>
           <tr v-for="item in data">
@@ -20,7 +22,11 @@
     </div>
   </div>
 </template>
+
 <script>
+  import $ from 'jquery'
+  import 'datatables.net'
+
   export default {
     props: {
       columns: Array,
@@ -51,10 +57,15 @@
       itemValue (item, column) {
         return item[column.toLowerCase()]
       }
+    },
+    mounted: function () {
+      console.log($('table')[0].outerHTML)
+      $('table').dataTable()
     }
   }
 
 </script>
+
 <style>
 
 </style>
