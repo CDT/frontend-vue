@@ -9,7 +9,7 @@ import Notifications from 'src/components/Dashboard/Views/Notifications.vue'
 import Icons from 'src/components/Dashboard/Views/Icons.vue'
 import Maps from 'src/components/Dashboard/Views/Maps.vue'
 import Typography from 'src/components/Dashboard/Views/Typography.vue'
-import TableList from 'src/components/Dashboard/Views/TableList.vue'
+import EmployeeList from 'src/components/Dashboard/Views/EmployeeList.vue'
 
 const routes = [
   {
@@ -49,7 +49,7 @@ const routes = [
       {
         path: 'table-list',
         name: '人员列表',
-        component: TableList
+        component: EmployeeList
       }
     ]
   },
