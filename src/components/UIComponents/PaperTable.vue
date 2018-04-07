@@ -7,7 +7,7 @@
       </slot>
     </div>
     <div class="content table-responsive table-full-width">
-      <table class="table" :class="tableClass">
+      <table ref='table' class="table" :class="tableClass">
         <thead>
           <tr>
             <th v-for="column in columns">{{column}}</th>
@@ -59,8 +59,8 @@
       }
     },
     mounted: function () {
-      console.log($('table')[0].outerHTML)
-      $('table').dataTable()
+      $(this.$refs.table).dataTable()
+      console.log('dataTabled')
     }
   }
 

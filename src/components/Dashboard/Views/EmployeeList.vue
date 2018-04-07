@@ -42,14 +42,15 @@
         return translatedEmployees
       }
     },
-    created () {
+    mounted () {
+      console.log('ready to call /api/employees')
       axios.get('/api/employees')
            .then(
              response => {
                this.data = this.translateData(response.data)
              })
            .catch(e => {
-             console.log(e)
+             console.log('error: ' + e)
            })
     }
   }
