@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="basic-table">
     <div class="header">
       <slot name="header">
         <h4 class="title">{{title}}</h4>
@@ -8,7 +8,6 @@
     </div>
     <filter-bar></filter-bar>
     <vuetable ref="vuetable"
-      api-url="https://vuetable.ratiw.net/api/users"
       :fields="fields"
       :css="css"
       pagination-path=""
@@ -19,25 +18,10 @@
       detail-row-component="my-detail-row"
       :append-params="moreParams"
       :render-icon="renderIcon"
+      :api-url='api'
       @vuetable:cell-clicked="onCellClicked"
       @vuetable:pagination-data="onPaginationData"
     >
-      <template slot="actions" scope="props">
-        <div class="custom-actions">
-          <button class="btn btn-default btn-sm"
-            @click="onAction('view-item', props.rowData, props.rowIndex)">
-            <span class="glyphicon glyphicon-zoom-in"></span>
-          </button>
-          <button class="btn btn-default btn-sm"
-            @click="onAction('edit-item', props.rowData, props.rowIndex)">
-            <span class="glyphicon glyphicon-pencil"></span>
-          </button>
-          <button class="btn btn-default btn-sm"
-            @click="onAction('delete-item', props.rowData, props.rowIndex)">
-            <span class="glyphicon glyphicon-remove"></span>
-          </button>
-        </div>
-      </template>
     </vuetable>
     <div>
       <vuetable-pagination-info ref="paginationInfo"
@@ -65,12 +49,17 @@ import CustomActions from './CustomActions'
 import DetailRow from './DetailRow'
 import FilterBar from './FilterBar'
 import VueEvents from 'vue-events'
+
 Vue.use(VueEvents)
 
 Vue.component('custom-actions', CustomActions)
 Vue.component('my-detail-row', DetailRow)
 
 export default {
+  created () {
+    console.log('api:' + this.$props.api)
+    console.log('title:' + this.$props.title)
+  },
   props: {
     type: {
       type: String, // striped | hover
@@ -83,7 +72,10 @@ export default {
     subTitle: {
       type: String,
       default: ''
-
+    },
+    api: {
+      type: String,
+      default: ''
     }
   },
   components: {
@@ -172,5 +164,8 @@ export default {
 span.sort-icon {
   float: right;
   color: #ff9100;
+}
+.basic-table {
+  padding: 0% 5% 5% 5%;
 }
 </style>

@@ -55,11 +55,5 @@ export default [
     title: 'Actions',
     titleClass: 'text-center',
     dataClass: 'text-center'
-  },
-  {
-    name: '__slot:actions',
-    title: 'Slot Actions',
-    titleClass: 'text-center',
-    dataClass: 'text-center'
   }
 ]
