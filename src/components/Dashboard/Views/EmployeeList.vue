@@ -24,7 +24,7 @@
       return {
         title: '人员信息表',
         subTitle: '院内所有人员基本信息',
-        api: 'localhost:8080/api/employees'
+        api: '/api/employees'
       }
     }
   }
