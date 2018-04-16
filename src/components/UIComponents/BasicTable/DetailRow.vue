@@ -1,24 +1,16 @@
 <template>
     <div @click="onClick">
       <div class="inline field">
-        <label>Name: </label>
+        <label>工号: </label>
+        <span>{{rowData.job_NO}}</span>
+      </div>
+      <div class="inline field">
+        <label>姓名: </label>
         <span>{{rowData.name}}</span>
       </div>
       <div class="inline field">
-        <label>Email: </label>
-        <span>{{rowData.email}}</span>
-      </div>
-      <div class="inline field">
-        <label>Nickname: </label>
-        <span>{{rowData.nickname}}</span>
-      </div>
-      <div class="inline field">
-        <label>Birthdate: </label>
-        <span>{{rowData.birthdate}}</span>
-      </div>
-      <div class="inline field">
-        <label>Gender: </label>
-        <span>{{rowData.gender}}</span>
+        <label>手机号: </label>
+        <span>{{rowData.mobile}}</span>
       </div>
     </div>
   </template>

