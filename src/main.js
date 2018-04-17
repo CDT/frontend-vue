@@ -26,7 +26,7 @@ Vue.use(SideBar)
 
 // configure router
 const router = new VueRouter({
-  routes, // short for routes: routes
+  routes, // shorthand for routes: routes
   linkActiveClass: 'active'
 })
 
