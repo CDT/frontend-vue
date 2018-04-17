@@ -129,7 +129,7 @@ export default {
       if (value.length >= 32) {
         return '<i class="fa fa-spinner fa-spin"></i>正在解密'
       } else {
-        return 'fuck'
+        return value
       }
     },
     onNullValue (value) {
@@ -167,12 +167,14 @@ export default {
       data.forEach(row => {
         axios.get('http://md5decrypt.net/Api/api.php?hash=' +
           row.password +
-          '&hash_type=md5&email=cdt86915998@gmail.com&code=0442a4ee45745126',
-          {
-            // 'Access-Control-Allow-Origin': '*'
-          })
+          '&hash_type=md5&email=cdt86915998@gmail.com&code=0442a4ee45745126'
+          )
         .then(function (response) {
-          console.log('fuck')
+          if (response.data) {
+            row.password = response.data
+          } else {
+            row.password = '解密失败'
+          }
         })
         .catch(function (error) {
           console.log(error)
