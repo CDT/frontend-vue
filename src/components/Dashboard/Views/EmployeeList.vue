@@ -2,23 +2,23 @@
     <div class="row">
       <div class="col-md-12">
         <div class="card">
-          <basic-table 
+          <employee-table 
             :title="title" 
             :sub-title="subTitle" 
             :api="api"
           >
-          </basic-table>
+          </employee-table>
         </div>
       </div>
     </div>
 </template>
 
 <script>
-  import BasicTable from 'components/UIComponents/BasicTable/BasicTable.vue'
+  import EmployeeTable from 'components/UIComponents/EmployeeTable/EmployeeTable.vue'
   
   export default {
     components: {
-      BasicTable
+      EmployeeTable
     },
     data () {
       return {
