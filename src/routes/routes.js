@@ -8,7 +8,7 @@ import UserProfile from 'src/components/Dashboard/Views/UserProfile.vue'
 import Notifications from 'src/components/Dashboard/Views/Notifications.vue'
 import Icons from 'src/components/Dashboard/Views/Icons.vue'
 import Maps from 'src/components/Dashboard/Views/Maps.vue'
-import Patient from 'src/components/Dashboard/Views/Patient.vue'
+import PatientView from 'src/components/Dashboard/Views/PatientView.vue'
 import EmployeeList from 'src/components/Dashboard/Views/EmployeeList.vue'
 
 const routes = [
@@ -43,8 +43,8 @@ const routes = [
         component: Maps
       },
       {
-        path: 'patient',
-        component: Patient
+        path: 'patientview',
+        component: PatientView
       },
       {
         path: 'table-list',

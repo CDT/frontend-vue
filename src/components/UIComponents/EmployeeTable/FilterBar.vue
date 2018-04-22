@@ -3,7 +3,7 @@
     <div class="form-inline">
       <div class="form-group">
         <label>查找 :</label>
-        <input type="text" v-model="filterText" class="form-control" @keyup.enter="doFilter" placeholder="name, nickname, or email">
+        <input type="text" v-model="filterText" class="form-control" @keyup.enter="doFilter" placeholder="关键字">
         <button class="btn btn-primary" @click="doFilter">搜索</button>
         <button class="btn btn-default" @click="resetFilter">重置</button>
       </div>

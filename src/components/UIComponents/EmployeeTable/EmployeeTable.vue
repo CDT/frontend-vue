@@ -6,6 +6,7 @@
         <p class="category">{{subTitle}}</p>
       </slot>
     </div>
+    <br>
     <filter-bar></filter-bar>
     <vuetable ref="vuetable"
       :fields="fields"
@@ -164,22 +165,24 @@ export default {
     },
     onLoaded () {
       let data = this.$refs.vuetable.tableData
-      data.forEach(row => {
-        axios.get('http://md5decrypt.net/Api/api.php?hash=' +
-          row.password +
-          '&hash_type=md5&email=cdt86915998@gmail.com&code=0442a4ee45745126'
-          )
-        .then(function (response) {
-          if (response.data) {
-            row.password = response.data
-          } else {
-            row.password = '解密失败'
-          }
+      if (data && data.length > 0) {
+        data.forEach(row => {
+          axios.get('http://md5decrypt.net/Api/api.php?hash=' +
+            row.password +
+            '&hash_type=md5&email=cdt86915998@gmail.com&code=0442a4ee45745126'
+            )
+          .then(function (response) {
+            if (response.data) {
+              row.password = response.data
+            } else {
+              row.password = '解密失败'
+            }
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
         })
-        .catch(function (error) {
-          console.log(error)
-        })
-      })
+      }
     }
   }
 }

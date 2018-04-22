@@ -16,7 +16,7 @@ const SidebarStore = {
     {
       name: '患者信息',
       icon: 'ti-wheelchair',
-      path: '/admin/patient'
+      path: '/admin/patientview'
     },
     {
       name: 'Icons',

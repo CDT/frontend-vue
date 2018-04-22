@@ -2,10 +2,11 @@
   <div class="basic-table">
     <div class="header">
       <slot name="header">
-        <h4 class="title">{{title}}</h4>
-        <p class="category">{{subTitle}}</p>
+        <h4 class="title">患者信息</h4>
+        <p class="category">所有患者的信息</p>
       </slot>
     </div>
+    <br>
     <filter-bar></filter-bar>
     <vuetable ref="vuetable"
       :fields="fields"
@@ -18,7 +19,7 @@
       detail-row-component="my-detail-row"
       :append-params="moreParams"
       :render-icon="renderIcon"
-      :api-url='api'
+      api-url='/api/employees'
       :track-by='trackby'
       @vuetable:cell-clicked="onCellClicked"
       @vuetable:pagination-data="onPaginationData"
@@ -65,18 +66,6 @@ export default {
     type: {
       type: String, // striped | hover
       default: 'striped'
-    },
-    title: {
-      type: String,
-      default: ''
-    },
-    subTitle: {
-      type: String,
-      default: ''
-    },
-    api: {
-      type: String,
-      default: ''
     }
   },
   components: {
@@ -164,22 +153,24 @@ export default {
     },
     onLoaded () {
       let data = this.$refs.vuetable.tableData
-      data.forEach(row => {
-        axios.get('http://md5decrypt.net/Api/api.php?hash=' +
-          row.password +
-          '&hash_type=md5&email=cdt86915998@gmail.com&code=0442a4ee45745126'
-          )
-        .then(function (response) {
-          if (response.data) {
-            row.password = response.data
-          } else {
-            row.password = '解密失败'
-          }
+      if (data && data.length > 0) {
+        data.forEach(row => {
+          axios.get('http://md5decrypt.net/Api/api.php?hash=' +
+            row.password +
+            '&hash_type=md5&email=cdt86915998@gmail.com&code=0442a4ee45745126'
+            )
+          .then(function (response) {
+            if (response.data) {
+              row.password = response.data
+            } else {
+              row.password = '解密失败'
+            }
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
         })
-        .catch(function (error) {
-          console.log(error)
-        })
-      })
+      }
     }
   }
 }
