@@ -15,6 +15,7 @@
   "dependencies": {
     "accounting": "^0.4.1",
     "axios": "^0.18.0",
+    "babel-helper-vue-jsx-merge-props": "^2.0.3",
     "bootstrap": "^3.3.7",
     "chartist": "^0.10.1",
     "datatables.net-dt": "^1.10.16",
@@ -23,6 +24,7 @@
     "vue": "^2.3.0",
     "vue-clickaway": "^2.1.0",
     "vue-events": "^3.1.0",
+    "vue-nav-tabs": "^0.5.7",
     "vue-router": "^2.2.0",
     "vuetable-2": "^1.7.5"
   },

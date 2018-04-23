@@ -40,9 +40,6 @@
 </template>
 
 <script>
-import Vuetable from 'vuetable-2/src/components/Vuetable'
-import VuetablePagination from 'vuetable-2/src/components/VuetablePagination'
-import VuetablePaginationInfo from 'vuetable-2/src/components/VuetablePaginationInfo'
 import accounting from 'accounting'
 import moment from 'moment'
 import Vue from 'vue'
@@ -51,10 +48,7 @@ import BootstrapStyle from './bootstrap-css.js'
 import CustomActions from './CustomActions'
 import DetailRow from './DetailRow'
 import FilterBar from './FilterBar'
-import VueEvents from 'vue-events'
 import axios from 'axios'
-
-Vue.use(VueEvents)
 
 Vue.component('custom-actions', CustomActions)
 Vue.component('my-detail-row', DetailRow)
@@ -81,9 +75,6 @@ export default {
     }
   },
   components: {
-    Vuetable,
-    VuetablePagination,
-    VuetablePaginationInfo,
     FilterBar
   },
   data () {
