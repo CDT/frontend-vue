@@ -14,9 +14,9 @@ const SidebarStore = {
       path: '/admin/table-list'
     },
     {
-      name: 'Typography',
-      icon: 'ti-text',
-      path: '/admin/typography'
+      name: '患者信息',
+      icon: 'ti-wheelchair',
+      path: '/admin/patientview'
     },
     {
       name: 'Icons',

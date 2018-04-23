@@ -7,21 +7,21 @@ export default [
   },
   {
     name: 'job_NO',
-    title: '<span class="glyphicon glyphicon-tag"></span> 工号',
+    title: '<span class="glyphicon glyphicon-envelope"></span> 工号',
     sortField: 'job_NO',
     titleClass: 'text-center',
     dataClass: 'text-center'
   },
   {
     name: 'name',
-    title: '<span class="glyphicon glyphicon-text-background"></span> 姓名',
+    title: '<span class="glyphicon glyphicon-user"></span> 姓名',
     sortField: 'name',
     titleClass: 'text-center',
     dataClass: 'text-center'
   },
   {
     name: 'mobile',
-    title: '<span class="glyphicon glyphicon-phone"></span> 手机号',
+    title: '<span class="glyphicon glyphicon-envelope"></span> 手机号',
     sortField: 'mobile',
     titleClass: 'text-center',
     dataClass: 'text-center',
@@ -29,7 +29,7 @@ export default [
   },
   {
     name: 'id_NO',
-    title: '<span class="glyphicon glyphicon-user"></span> 身份证',
+    title: '<span class="glyphicon glyphicon-envelope"></span> 身份证',
     sortField: 'id_NO',
     titleClass: 'text-center',
     dataClass: 'text-center',

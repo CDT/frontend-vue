@@ -2,8 +2,8 @@
   <div class="basic-table">
     <div class="header">
       <slot name="header">
-        <h4 class="title">{{title}}</h4>
-        <p class="category">{{subTitle}}</p>
+        <h4 class="title">患者信息</h4>
+        <p class="category">所有患者的信息</p>
       </slot>
     </div>
     <br>
@@ -19,7 +19,7 @@
       detail-row-component="my-detail-row"
       :append-params="moreParams"
       :render-icon="renderIcon"
-      :api-url='api'
+      api-url='/api/employees'
       :track-by='trackby'
       @vuetable:cell-clicked="onCellClicked"
       @vuetable:pagination-data="onPaginationData"
@@ -66,18 +66,6 @@ export default {
     type: {
       type: String, // striped | hover
       default: 'striped'
-    },
-    title: {
-      type: String,
-      default: ''
-    },
-    subTitle: {
-      type: String,
-      default: ''
-    },
-    api: {
-      type: String,
-      default: ''
     }
   },
   components: {
