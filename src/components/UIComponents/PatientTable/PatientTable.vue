@@ -2,8 +2,8 @@
   <div class="basic-table">
     <div class="header">
       <slot name="header">
-        <h4 class="title">患者信息</h4>
-        <p class="category">所有患者的信息</p>
+        <h4 class="title">患者列表</h4>
+        <p class="category">所有患者</p>
       </slot>
     </div>
     <br>
@@ -21,7 +21,7 @@
       :render-icon="renderIcon"
       api-url='/api/employees'
       :track-by='trackby'
-      @vuetable:cell-clicked="onCellClicked"
+      @vuetable:cell-dblclicked="onCellDblClicked"
       @vuetable:pagination-data="onPaginationData"
       @vuetable:loaded="onLoaded"
     >
@@ -40,14 +40,12 @@
 </template>
 
 <script>
-import accounting from 'accounting'
-import moment from 'moment'
 import Vue from 'vue'
 import FieldDef from './field-def.js'
 import BootstrapStyle from './bootstrap-css.js'
 import CustomActions from './CustomActions'
 import DetailRow from './DetailRow'
-import FilterBar from './FilterBar'
+import FilterBar from '../Inputs/FilterBar'
 import axios from 'axios'
 
 Vue.component('custom-actions', CustomActions)
@@ -96,14 +94,6 @@ export default {
         ? '<span class="label label-warning"><span class="glyphicon glyphicon-star"></span> Male</span>'
         : '<span class="label label-info"><span class="glyphicon glyphicon-heart"></span> Female</span>'
     },
-    formatNumber (value) {
-      return accounting.formatNumber(value, 2)
-    },
-    formatDate (value, fmt = 'D MMM YYYY') {
-      return (value == null)
-        ? ''
-        : moment(value, 'YYYY-MM-DD').format(fmt)
-    },
     onPasswordUpdate (value) {
       // Dangerous here is password length is allowed over 32 byte
       if (value.length >= 32) {
@@ -124,7 +114,7 @@ export default {
     onChangePage (page) {
       this.$refs.vuetable.changePage(page)
     },
-    onCellClicked (data, field, event) {
+    onCellDblClicked (data, field, event) {
       console.log('cellClicked: ', field.name)
       this.$refs.vuetable.toggleDetailRow(data.job_NO)
     },

@@ -10,7 +10,7 @@ export default [
     title: '<span class="glyphicon glyphicon-tag"></span> 工号',
     sortField: 'job_NO',
     titleClass: 'text-center',
-    dataClass: 'text-center'
+    dataClass: 'text-center full-name'
   },
   {
     name: 'name',

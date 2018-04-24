@@ -21,7 +21,7 @@
       :render-icon="renderIcon"
       :api-url='api'
       :track-by='trackby'
-      @vuetable:cell-clicked="onCellClicked"
+      @vuetable:cell-dblclicked="onCellDblClicked"
       @vuetable:pagination-data="onPaginationData"
       @vuetable:loaded="onLoaded"
     >
@@ -47,7 +47,7 @@ import FieldDef from './field-def.js'
 import BootstrapStyle from './bootstrap-css.js'
 import CustomActions from './CustomActions'
 import DetailRow from './DetailRow'
-import FilterBar from './FilterBar'
+import FilterBar from '../Inputs/FilterBar'
 import axios from 'axios'
 
 Vue.component('custom-actions', CustomActions)
@@ -136,7 +136,7 @@ export default {
     onChangePage (page) {
       this.$refs.vuetable.changePage(page)
     },
-    onCellClicked (data, field, event) {
+    onCellDblClicked (data, field, event) {
       console.log('cellClicked: ', field.name)
       this.$refs.vuetable.toggleDetailRow(data.job_NO)
     },

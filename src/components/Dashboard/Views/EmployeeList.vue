@@ -2,33 +2,26 @@
     <div class="row">
       <div class="col-md-12">
         <div class="card">
+           <vue-tabs :active-tab-color=tabColor
+                      active-text-color="white">
+                <v-tab title="人员列表" icon="ti-user">
+                  <employee-table 
+                    :title="title" 
+                    :sub-title="subTitle" 
+                    :api="api"
+                  >
+                  </employee-table>
+                </v-tab>
 
-          <vue-tabs type="pills">
-            <v-tab title="First tab">
-              First tab content
-            </v-tab>
+                <v-tab title="人员详情" icon="ti-settings">
+                  Second tab content
+                </v-tab>
 
-            <v-tab title="Second tab">
-              Second tab content
-            </v-tab>
-
-            <v-tab title="Third tab">
-              Third tab content
-            </v-tab>
-        </vue-tabs>
-          
-          <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">...</div>
-            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
-            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+                <v-tab title="Third tab" icon="ti-check">
+                  Third tab content
+                </v-tab>
+            </vue-tabs>
           </div>
-
-          <employee-table 
-            :title="title" 
-            :sub-title="subTitle" 
-            :api="api"
-          >
-          </employee-table>
         </div>
       </div>
     </div>
@@ -36,6 +29,7 @@
 
 <script>
   import EmployeeTable from 'components/UIComponents/EmployeeTable/EmployeeTable.vue'
+  import globalConfig from 'globalConfig'
   
   export default {
     components: {
@@ -45,12 +39,15 @@
       return {
         title: '人员信息表',
         subTitle: '院内所有人员基本信息',
-        api: '/api/employees'
+        api: '/api/employees',
+        tabColor: globalConfig.tabColor
       }
     }
   }
 
 </script>
 <style>
-
+.vue-tabs .nav-tabs {
+  background:white;
+}
 </style>
