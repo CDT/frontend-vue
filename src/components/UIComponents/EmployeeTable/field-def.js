@@ -10,14 +10,14 @@ export default [
     title: '<span class="glyphicon glyphicon-tag"></span> 工号',
     sortField: 'job_NO',
     titleClass: 'text-center',
-    dataClass: 'text-center full-name'
+    dataClass: 'text-center'
   },
   {
     name: 'name',
     title: '<span class="glyphicon glyphicon-text-background"></span> 姓名',
     sortField: 'name',
     titleClass: 'text-center',
-    dataClass: 'text-center'
+    dataClass: 'text-center full-name'
   },
   {
     name: 'mobile',

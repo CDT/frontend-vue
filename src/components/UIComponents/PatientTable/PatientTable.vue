@@ -19,7 +19,7 @@
       detail-row-component="my-detail-row"
       :append-params="moreParams"
       :render-icon="renderIcon"
-      api-url='/api/employees'
+      api-url='/api/patients'
       :track-by='trackby'
       @vuetable:cell-dblclicked="onCellDblClicked"
       @vuetable:pagination-data="onPaginationData"
