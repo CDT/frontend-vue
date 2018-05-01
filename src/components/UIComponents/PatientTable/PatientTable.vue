@@ -20,7 +20,7 @@
       :append-params="moreParams"
       :render-icon="renderIcon"
       api-url='/api/patients'
-      :track-by='trackby'
+      track-by='patientId'
       @vuetable:cell-dblclicked="onCellDblClicked"
       @vuetable:pagination-data="onPaginationData"
       @vuetable:loaded="onLoaded"
@@ -74,7 +74,6 @@ export default {
           direction: 'asc'
         }
       ],
-      trackby: 'job_NO',
       moreParams: {}
     }
   },
@@ -90,9 +89,13 @@ export default {
       return value.toUpperCase()
     },
     genderLabel (value) {
-      return value === 'M'
-        ? '<span class="label label-warning"><span class="glyphicon glyphicon-star"></span> Male</span>'
-        : '<span class="label label-info"><span class="glyphicon glyphicon-heart"></span> Female</span>'
+      return value === '1'
+        ? '<span class="label label-warning"><i class="fa fa-mars"></i>男</span>'
+        : '<span class="label label-info"><i class="fa fa-venus"></i>女</span>'
+    },
+    combinePhone2 (value, row) {
+      console.log(row)
+      return value + ' | '
     },
     onPasswordUpdate (value) {
       // Dangerous here is password length is allowed over 32 byte

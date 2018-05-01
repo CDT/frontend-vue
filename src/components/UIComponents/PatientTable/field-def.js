@@ -21,7 +21,8 @@ export default [
     name: 'gender',
     title: '<span class="glyphicon glyphicon-tag"></span> 性别',
     titleClass: 'text-center',
-    dataClass: 'text-center'
+    dataClass: 'text-center',
+    callback: 'genderLabel'
   },
   {
     name: 'id_NO',
@@ -34,7 +35,10 @@ export default [
     name: 'phone1',
     title: '<span class="glyphicon glyphicon-tag"></span> 手机号',
     titleClass: 'text-center',
-    dataClass: 'text-center'
+    dataClass: 'text-center',
+    callback: function (value, item) {
+      console.log(item)
+    }
   },
   {
     name: '__component:custom-actions',
