@@ -23,7 +23,6 @@
       track-by='patientId'
       @vuetable:cell-dblclicked="onCellDblClicked"
       @vuetable:pagination-data="onPaginationData"
-      @vuetable:loaded="onLoaded"
     >
     </vuetable>
     <div>
@@ -46,7 +45,7 @@ import BootstrapStyle from './bootstrap-css.js'
 import CustomActions from './CustomActions'
 import DetailRow from './DetailRow'
 import FilterBar from '../Inputs/FilterBar'
-import axios from 'axios'
+import moment from 'moment'
 
 Vue.component('custom-actions', CustomActions)
 Vue.component('my-detail-row', DetailRow)
@@ -93,17 +92,10 @@ export default {
         ? '<span class="label label-warning"><i class="fa fa-mars"></i>男</span>'
         : '<span class="label label-info"><i class="fa fa-venus"></i>女</span>'
     },
-    combinePhone2 (value, row) {
-      console.log(row)
-      return value + ' | '
-    },
-    onPasswordUpdate (value) {
-      // Dangerous here is password length is allowed over 32 byte
-      if (value.length >= 32) {
-        return '<i class="fa fa-spinner fa-spin"></i>正在解密'
-      } else {
-        return value
-      }
+    formatDate (value, fmt = 'YYYY年M月D日') {
+      return (value == null)
+        ? ''
+        : moment(value, 'YYYY-MM-DD').format(fmt)
     },
     onNullValue (value) {
       return value == null
@@ -134,27 +126,6 @@ export default {
       this.moreParams = {}
       this.$refs.vuetable.refresh()
       Vue.nextTick(() => this.$refs.vuetable.refresh())
-    },
-    onLoaded () {
-      let data = this.$refs.vuetable.tableData
-      if (data && data.length > 0) {
-        data.forEach(row => {
-          axios.get('http://md5decrypt.net/Api/api.php?hash=' +
-            row.password +
-            '&hash_type=md5&email=cdt86915998@gmail.com&code=0442a4ee45745126'
-            )
-          .then(function (response) {
-            if (response.data) {
-              row.password = response.data
-            } else {
-              row.password = '解密失败'
-            }
-          })
-          .catch(function (error) {
-            console.log(error)
-          })
-        })
-      }
     }
   }
 }

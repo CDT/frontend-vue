@@ -25,20 +25,24 @@ export default [
     callback: 'genderLabel'
   },
   {
-    name: 'id_NO',
+    name: 'dateOfBirth',
+    title: '<span class="glyphicon glyphicon-tag"></span> 出生日期',
+    titleClass: 'text-center',
+    dataClass: 'text-center',
+    callback: 'formatDate|YYYY年M月D日'
+  },
+  {
+    name: 'idNumber',
     title: '<span class="glyphicon glyphicon-user"></span> 身份证',
     titleClass: 'text-center',
     dataClass: 'text-center',
     callback: 'onNullValue'
   },
   {
-    name: 'phone1',
+    name: 'phone',
     title: '<span class="glyphicon glyphicon-tag"></span> 手机号',
     titleClass: 'text-center',
-    dataClass: 'text-center',
-    callback: function (value, item) {
-      console.log(item)
-    }
+    dataClass: 'text-center'
   },
   {
     name: '__component:custom-actions',
