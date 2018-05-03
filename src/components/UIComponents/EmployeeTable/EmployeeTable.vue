@@ -16,7 +16,7 @@
       :multi-sort="true"
       multi-sort-key="ctrl"
       :sort-order="sortOrder"
-      detail-row-component="my-detail-row"
+      detail-row-component="detail-row-employee"
       :append-params="moreParams"
       :render-icon="renderIcon"
       :api-url='api'
@@ -50,12 +50,10 @@ import DetailRow from './DetailRow'
 import FilterBar from '../Inputs/FilterBar'
 import axios from 'axios'
 
-Vue.component('custom-actions', CustomActions)
-Vue.component('my-detail-row', DetailRow)
+Vue.component('custom-actions-employee', CustomActions)
+Vue.component('detail-row-employee', DetailRow)
 
 export default {
-  created () {
-  },
   props: {
     type: {
       type: String, // striped | hover

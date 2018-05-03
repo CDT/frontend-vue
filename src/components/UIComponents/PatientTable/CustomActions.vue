@@ -20,6 +20,13 @@
     methods: {
       itemAction (action, data, index) {
         console.log('custom-actions: ' + action, data.name, index)
+        switch (action) {
+          case 'view-item':
+            console.log(this)
+            break
+          default:
+            console.log('default')
+        }
       }
     }
   }

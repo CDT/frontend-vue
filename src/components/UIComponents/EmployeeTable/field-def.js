@@ -43,7 +43,7 @@ export default [
     callback: 'onPasswordUpdate'
   },
   {
-    name: '__component:custom-actions',
+    name: '__component:custom-actions-employee',
     title: '操作',
     titleClass: 'text-center',
     dataClass: 'text-center'

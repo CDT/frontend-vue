@@ -19,6 +19,7 @@
     },
     methods: {
       itemAction (action, data, index) {
+        console.log('employee')
         console.log('custom-actions: ' + action, data.name, index)
       }
     }

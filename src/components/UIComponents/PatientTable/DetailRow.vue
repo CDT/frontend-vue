@@ -1,8 +1,8 @@
 <template>
     <div @click="onClick">
       <div class="inline field">
-        <label>工号: </label>
-        <span>{{rowData.job_NO}}</span>
+        <label>卡号: </label>
+        <span>{{rowData.patientId}}</span>
       </div>
       <div class="inline field">
         <label>姓名: </label>
@@ -10,7 +10,7 @@
       </div>
       <div class="inline field">
         <label>手机号: </label>
-        <span>{{rowData.mobile}}</span>
+        <span>{{rowData.phone}}</span>
       </div>
     </div>
   </template>

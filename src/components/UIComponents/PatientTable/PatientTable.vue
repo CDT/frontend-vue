@@ -16,7 +16,7 @@
       :multi-sort="true"
       multi-sort-key="ctrl"
       :sort-order="sortOrder"
-      detail-row-component="my-detail-row"
+      detail-row-component="detail-row-patient"
       :append-params="moreParams"
       :render-icon="renderIcon"
       api-url='/api/patients'
@@ -47,12 +47,10 @@ import DetailRow from './DetailRow'
 import FilterBar from '../Inputs/FilterBar'
 import moment from 'moment'
 
-Vue.component('custom-actions', CustomActions)
-Vue.component('my-detail-row', DetailRow)
+Vue.component('custom-actions-patient', CustomActions)
+Vue.component('detail-row-patient', DetailRow)
 
 export default {
-  created () {
-  },
   props: {
     type: {
       type: String, // striped | hover
@@ -60,7 +58,7 @@ export default {
     }
   },
   components: {
-    FilterBar
+    'filter-bar': FilterBar
   },
   data () {
     return {
@@ -110,11 +108,8 @@ export default {
       this.$refs.vuetable.changePage(page)
     },
     onCellDblClicked (data, field, event) {
-      console.log('cellClicked: ', field.name)
-      this.$refs.vuetable.toggleDetailRow(data.job_NO)
-    },
-    onAction (action, data, index) {
-      console.log('custom-actions: ' + action, data.name, index)
+      console.log(data)
+      this.$refs.vuetable.toggleDetailRow(data.patientId)
     },
     onFilterSet (filterText) {
       this.moreParams = {

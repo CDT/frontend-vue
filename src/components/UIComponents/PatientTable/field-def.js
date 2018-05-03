@@ -45,7 +45,7 @@ export default [
     dataClass: 'text-center'
   },
   {
-    name: '__component:custom-actions',
+    name: '__component:custom-actions-patient',
     title: '操作',
     titleClass: 'text-center',
     dataClass: 'text-center'
