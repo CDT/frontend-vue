@@ -3,7 +3,8 @@
       <div class="col-md-12">
         <div class="card">
            <vue-tabs :active-tab-color=tabColor
-                      active-text-color="white">
+                      active-text-color="white"
+                      type="pills">
                 <v-tab title="人员列表" icon="ti-user">
                   <employee-table 
                     :title="title" 
