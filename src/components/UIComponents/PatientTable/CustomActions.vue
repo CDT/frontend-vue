@@ -15,6 +15,9 @@
       },
       rowIndex: {
         type: Number
+      },
+      tabs: {
+        type: Array
       }
     },
     methods: {
@@ -22,7 +25,7 @@
         console.log('custom-actions: ' + action, data.name, index)
         switch (action) {
           case 'view-item':
-            console.log(this)
+            console.log('view-action')
             break
           default:
             console.log('default')

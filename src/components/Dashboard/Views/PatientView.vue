@@ -9,13 +9,14 @@
                 <v-tab title="患者列表" icon="ti-user">
                   <patient-table></patient-table>
                 </v-tab>
-
-                <v-tab title="人员详情" icon="ti-settings">
-                  Second tab content
-                </v-tab>
-
-                <v-tab v-for="tab in tabs" :key="tab">
-                  <div slot="title">{{tab}} <span @click.stop="removeTab(index)" class="ti-close tab-close"></span></div>
+                
+                <v-tab v-for="tab in tabs" :key="tab.title" :icon="tab.icon" 
+                :title="`${tab.title}`">
+                  <span slot="title" class="title title_center">
+                    <i class="ti-settings">&nbsp;</i>
+                    {{tab.title}}&nbsp;&nbsp;
+                    <span @click.stop="removeTab(index)" class="ti-close tab-close"></span>
+                  </span>
                   {{tab}} 
                 </v-tab>
 
@@ -37,15 +38,12 @@
     data () {
       return {
         tabColor: globalConfig.tabColor,
-        tabs: ['Fuck', 'You']
+        tabs: []
       }
     },
     methods: {
       removeTab (index) {
         this.tabs.splice(index, 1)
-      },
-      addTab () {
-        this.tabs.push('New Tab')
       }
     }
   }
@@ -56,6 +54,7 @@
   float:right;
 }
 .tab-close:hover{
-  transform: rotate(7deg);
+  transition: all 0.5s;
+  transform: rotate(10deg);
 }
 </style>
