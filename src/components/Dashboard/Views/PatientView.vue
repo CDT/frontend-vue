@@ -4,9 +4,9 @@
         <div class="card">
           
           <vue-tabs :active-tab-color=tabColor
-                      active-text-color="white"
-                      type="pills"
-                      v-model="tabName">
+                    active-text-color="white"
+                    type="pills"
+                    v-model="tabName">
                 <v-tab title="患者列表" icon="ti-user">
                   <patient-table></patient-table>
                 </v-tab>
@@ -36,6 +36,7 @@
   import PatientTable from 'components/UIComponents/PatientTable/PatientTable.vue'
   import globalConfig from 'globalConfig'
   import eventBus from '../../../eventBus'
+  import Vue from 'vue'
   
   export default {
     components: {
@@ -45,7 +46,7 @@
       return {
         tabColor: globalConfig.tabColor,
         tabs: [],
-        tabName: 'fucker'
+        tabName: ''
       }
     },
     methods: {
@@ -57,9 +58,10 @@
       let self = this
       eventBus.$on('addTab', function (tab) {
         self.tabs.push(tab)
-        console.log(self.tabs)
-        self.tabName = tab.key
-        console.log(self.tabName)
+        let a = 1
+        a = 2
+        console.log(a)
+        Vue.nextTick(() => { self.tabName = tab.key })
       })
     }
   }

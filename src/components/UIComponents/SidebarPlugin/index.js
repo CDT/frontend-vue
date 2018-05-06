@@ -10,7 +10,7 @@ const SidebarStore = {
     },
     {
       name: '人员列表',
-      icon: 'ti-view-list-alt',
+      icon: 'ti-user',
       path: '/admin/table-list'
     },
     {
