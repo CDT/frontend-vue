@@ -1,12 +1,14 @@
 <template>
-    <div class="custom-actions">
-      <button class="btn btn-default btn-sm" @click="itemAction('view-item', rowData, rowIndex)"><span class="glyphicon glyphicon-zoom-in"></span></button>
-      <button class="btn btn-default btn-sm" @click="itemAction('edit-item', rowData, rowIndex)"><span class="glyphicon glyphicon-pencil"></span></button>
-      <button class="btn btn-default btn-sm" @click="itemAction('delete-item', rowData, rowIndex)"><span class="glyphicon glyphicon-remove"></span></button>
-    </div>
-  </template>
+  <div class="custom-actions">
+    <button class="btn btn-default btn-sm" @click="itemAction('view-item', rowData, rowIndex)"><span class="glyphicon glyphicon-zoom-in"></span></button>
+    <button class="btn btn-default btn-sm" @click="itemAction('edit-item', rowData, rowIndex)"><span class="glyphicon glyphicon-pencil"></span></button>
+    <button class="btn btn-default btn-sm" @click="itemAction('delete-item', rowData, rowIndex)"><span class="glyphicon glyphicon-remove"></span></button>
+  </div>
+</template>
 
-  <script>
+<script>
+  import eventBus from '../../../eventBus'
+
   export default {
     props: {
       rowData: {
@@ -26,6 +28,7 @@
         switch (action) {
           case 'view-item':
             console.log('view-action')
+            eventBus.$emit('addTab', {title: '患者详情：' + data.name, icon: 'ti-id-badge', key: 'detail-' + data.patientId})
             break
           default:
             console.log('default')
