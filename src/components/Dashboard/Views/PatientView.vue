@@ -6,7 +6,7 @@
           <vue-tabs :active-tab-color=tabColor
                     active-text-color="white"
                     type="pills"
-                    v-model="tabName">
+                    v-model="currentTab">
                 <v-tab title="患者列表" icon="ti-user">
                   <patient-table></patient-table>
                 </v-tab>     
@@ -42,7 +42,7 @@
       return {
         tabColor: globalConfig.tabColor,
         tabs: [],
-        tabName: ''
+        currentTab: ''
       }
     },
     methods: {
@@ -56,7 +56,7 @@
         if (!hasDuplicate(self.tabs, tab)) {
           self.tabs.push(tab)
         }
-        Vue.nextTick(() => { self.tabName = tab.key })
+        Vue.nextTick(() => { self.currentTab = tab.key })
       })
     }
   }

@@ -24,10 +24,8 @@
     },
     methods: {
       itemAction (action, data, index) {
-        console.log('custom-actions: ' + action, data.name, index)
         switch (action) {
           case 'view-item':
-            console.log('view-action')
             eventBus.$emit('addTab', {title: '患者详情：' + data.name, icon: 'ti-id-badge', key: 'detail-' + data.patientId})
             break
           default:
