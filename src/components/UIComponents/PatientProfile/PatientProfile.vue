@@ -15,6 +15,7 @@
       </div>
     </div>
 </template>
+
 <script>
   import EditProfileForm from '../../UIComponents/UserProfile/EditProfileForm.vue'
   import UserCard from '../../UIComponents/UserProfile/UserCard.vue'

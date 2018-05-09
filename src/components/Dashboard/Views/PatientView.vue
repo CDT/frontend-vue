@@ -17,7 +17,7 @@
                     {{tab.title}}&nbsp;&nbsp;
                     <span @click.stop="removeTab(index)" class="ti-close tab-close"></span>
                   </span>
-                  {{tab}} 
+                  <patient-profile></patient-profile>
                 </v-tab>
 
             </vue-tabs>
@@ -29,14 +29,16 @@
 
 <script>
   import PatientTable from 'components/UIComponents/PatientTable/PatientTable.vue'
+  import PatientProfile from 'components/UIComponents/PatientProfile/PatientProfile.vue'
   import globalConfig from 'globalConfig'
   import eventBus from '../../../eventBus'
-  import Vue from 'vue'
   import { hasDuplicate } from '../../utils'
+  import Vue from 'vue'
   
   export default {
     components: {
-      PatientTable
+      PatientTable,
+      PatientProfile
     },
     data () {
       return {
