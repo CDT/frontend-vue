@@ -9,17 +9,12 @@
                     v-model="tabName">
                 <v-tab title="患者列表" icon="ti-user">
                   <patient-table></patient-table>
-                </v-tab>
-
-                <v-tab title='fucker'>
-                  Fuck
-                </v-tab>
-                
-                <v-tab v-for="tab in tabs" :key="tab.key" :icon="tab.icon" 
+                </v-tab>     
+                <v-tab v-for="(tab, index) in tabs" :key="tab.key" :icon="tab.icon" 
                 :title="tab.key">
                   <span slot="title" class="title title_center">
                     <i class="ti-settings">&nbsp;</i>
-                    {{tab.key}}&nbsp;&nbsp;
+                    {{tab.title}}&nbsp;&nbsp;
                     <span @click.stop="removeTab(index)" class="ti-close tab-close"></span>
                   </span>
                   {{tab}} 
@@ -37,6 +32,7 @@
   import globalConfig from 'globalConfig'
   import eventBus from '../../../eventBus'
   import Vue from 'vue'
+  import { hasDuplicate } from '../../utils'
   
   export default {
     components: {
@@ -57,10 +53,9 @@
     mounted () {
       let self = this
       eventBus.$on('addTab', function (tab) {
-        self.tabs.push(tab)
-        let a = 1
-        a = 2
-        console.log(a)
+        if (!hasDuplicate(self.tabs, tab)) {
+          self.tabs.push(tab)
+        }
         Vue.nextTick(() => { self.tabName = tab.key })
       })
     }
