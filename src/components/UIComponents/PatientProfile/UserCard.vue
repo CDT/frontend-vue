@@ -1,24 +1,6 @@
 <template>
-  <div class="card card-user">
-    <div class="image">
-      <img src="static/img/background.jpg" alt="...">
-    </div>
-    <div class="content">
-      <div class="author">
-        <img class="avatar border-white" src="static/img/faces/face-2.jpg" alt="...">
-        <h4 class="title">Chet Faker
-          <br>
-          <a href="#">
-            <small>@chetfaker</small>
-          </a>
-        </h4>
-      </div>
-      <p class="description text-center">
-        "I like the way you work it
-        <br> No diggity
-        <br> I wanna bag it up"
-      </p>
-    </div>
+  <div class="card">
+    <h4>{{patientId}}</h4>
     <hr>
     <div class="text-center">
       <div class="row">
@@ -34,6 +16,12 @@
 </template>
 <script>
   export default {
+    props: {
+      patientId: {
+        type: String,
+        default: ''
+      }
+    },
     data () {
       return {
         details: [

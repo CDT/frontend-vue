@@ -1,7 +1,7 @@
 <template>
     <div class="row">
       <div class="col-lg-4 col-md-5">
-        <user-card>
+        <user-card patientId='patientId'>
 
         </user-card>
         <members-card>
@@ -17,14 +17,23 @@
 </template>
 
 <script>
-  import EditProfileForm from '../../UIComponents/UserProfile/EditProfileForm.vue'
-  import UserCard from '../../UIComponents/UserProfile/UserCard.vue'
-  import MembersCard from '../../UIComponents/UserProfile/MembersCard.vue'
+  import EditProfileForm from '../../UIComponents/PatientProfile/EditProfileForm.vue'
+  import UserCard from '../../UIComponents/PatientProfile/UserCard.vue'
+  import MembersCard from '../../UIComponents/PatientProfile/MembersCard.vue'
   export default {
+    props: {
+      patientId: {
+        type: String,
+        default: ''
+      }
+    },
     components: {
       EditProfileForm,
       UserCard,
       MembersCard
+    },
+    created () {
+      console.log(this.patientId)
     }
   }
 

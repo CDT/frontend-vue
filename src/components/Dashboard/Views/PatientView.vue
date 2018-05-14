@@ -17,7 +17,7 @@
                     {{tab.title}}&nbsp;&nbsp;
                     <span @click.stop="removeTab(index)" class="ti-close tab-close"></span>
                   </span>
-                  <patient-profile></patient-profile>
+                  <patient-profile :patientId='tab.key.split("-")[1]'></patient-profile>
                 </v-tab>
 
             </vue-tabs>
