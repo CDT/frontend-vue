@@ -1,39 +1,25 @@
 <template>
-    <div class="row">
-      <div class="col-lg-4 col-md-5">
-        <user-card patientId='patientId'>
+    <div>
+      <div class="author">
 
-        </user-card>
-        <members-card>
+        <h1 class="title">{{patient.name}} <span class="label label-info"><i class="fa fa-venus"></i>女</span>
+          <br>          
+            <small>患者Id: {{patient.patientId}}</small>
+        </h1>
 
-        </members-card>
-      </div>
-      <div class="col-lg-8 col-md-7">
-        <edit-profile-form>
+        {{patient}}
 
-        </edit-profile-form>
       </div>
     </div>
 </template>
 
 <script>
-  import EditProfileForm from '../../UIComponents/PatientProfile/EditProfileForm.vue'
-  import UserCard from '../../UIComponents/PatientProfile/UserCard.vue'
-  import MembersCard from '../../UIComponents/PatientProfile/MembersCard.vue'
+  
   export default {
     props: {
-      patientId: {
-        type: String,
-        default: ''
+      patient: {
+        type: Object
       }
-    },
-    components: {
-      EditProfileForm,
-      UserCard,
-      MembersCard
-    },
-    created () {
-      console.log(this.patientId)
     }
   }
 

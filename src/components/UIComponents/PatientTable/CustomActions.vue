@@ -26,7 +26,7 @@
       itemAction (action, data, index) {
         switch (action) {
           case 'view-item':
-            eventBus.$emit('addTab', {title: '患者详情：' + data.name, icon: 'ti-id-badge', key: 'detail-' + data.patientId})
+            eventBus.$emit('addPatientTab', {icon: 'ti-id-badge', key: 'detail-' + data.patientId, patient: data})
             break
           default:
             console.log('default')

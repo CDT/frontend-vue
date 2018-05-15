@@ -14,10 +14,10 @@
                 :title="tab.key">
                   <span slot="title" class="title title_center">
                     <i class="ti-settings">&nbsp;</i>
-                    {{tab.title}}&nbsp;&nbsp;
+                    患者详情：{{tab.patient.name}}&nbsp;&nbsp;
                     <span @click.stop="removeTab(index)" class="ti-close tab-close"></span>
                   </span>
-                  <patient-profile :patientId='tab.key.split("-")[1]'></patient-profile>
+                  <patient-profile :patient='tab.patient'></patient-profile>
                 </v-tab>
 
             </vue-tabs>
@@ -54,7 +54,7 @@
     },
     mounted () {
       let self = this
-      eventBus.$on('addTab', function (tab) {
+      eventBus.$on('addPatientTab', function (tab) {
         if (!hasDuplicate(self.tabs, tab)) {
           self.tabs.push(tab)
         }
