@@ -1,10 +1,8 @@
 <template>
   <div class="basic-table">
     <div class="header">
-      <slot name="header">
-        <h4 class="title">患者列表</h4>
-        <p class="category">所有患者</p>
-      </slot>
+      <h4 class="title">患者列表</h4>
+      <p class="category">所有患者</p>
     </div>
     <br>
     <filter-bar></filter-bar>
