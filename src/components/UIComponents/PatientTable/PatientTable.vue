@@ -98,6 +98,25 @@ export default {
         ? '(空)'
         : value
     },
+    translateCurrentStatus (value) {
+      console.log(value)
+      switch (value) {
+        case '1':
+          return '待新入'
+        case '2':
+          return '待床'
+        case '3':
+          return '在科'
+        case '4':
+          return '待入院'
+        case '5':
+          return '出院'
+        case '6':
+          return '取消住院登记'
+        default:
+          return '未知'
+      }
+    },
     onPaginationData (paginationData) {
       this.$refs.pagination.setPaginationData(paginationData)
       this.$refs.paginationInfo.setPaginationData(paginationData)

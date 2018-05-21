@@ -25,6 +25,13 @@ export default [
     callback: 'genderLabel'
   },
   {
+    name: 'currentStatus',
+    title: '<span class="glyphicon glyphicon-tag"></span> 当前状态',
+    titleClass: 'text-center',
+    dataClass: 'text-center',
+    callback: 'translateCurrentStatus'
+  },
+  {
     name: 'dateOfBirth',
     title: '<span class="glyphicon glyphicon-tag"></span> 出生日期',
     titleClass: 'text-center',
