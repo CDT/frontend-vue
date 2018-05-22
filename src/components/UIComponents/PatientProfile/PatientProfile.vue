@@ -22,6 +22,7 @@
 
       </h4>
       <p class="category">[国籍|省|市] {{ translateCurrentStatus(patient.currentStatus) }}</p>
+      <p class="category">[卡磁道：pca.pca_service_card_info]</p>
     </div><!-- end of header -->
 
     <div class='content'>
