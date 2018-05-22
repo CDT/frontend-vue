@@ -43,7 +43,7 @@ import BootstrapStyle from './bootstrap-css.js'
 import CustomActions from './CustomActions'
 import DetailRow from './DetailRow'
 import FilterBar from '../Inputs/FilterBar'
-import moment from 'moment'
+import { translatePatientCurrentStatus, formatDate } from '../../utils'
 
 Vue.component('custom-actions-patient', CustomActions)
 Vue.component('detail-row-patient', DetailRow)
@@ -88,35 +88,13 @@ export default {
         ? '<span class="label label-warning"><i class="fa fa-mars"></i>男</span>'
         : '<span class="label label-info"><i class="fa fa-venus"></i>女</span>'
     },
-    formatDate (value, fmt = 'YYYY年M月D日') {
-      return (value == null)
-        ? ''
-        : moment(value, 'YYYY-MM-DD').format(fmt)
-    },
+    formatDate: formatDate,
     onNullValue (value) {
       return value == null
         ? '(空)'
         : value
     },
-    translateCurrentStatus (value) {
-      console.log(value)
-      switch (value) {
-        case '1':
-          return '待新入'
-        case '2':
-          return '待床'
-        case '3':
-          return '在科'
-        case '4':
-          return '待入院'
-        case '5':
-          return '出院'
-        case '6':
-          return '取消住院登记'
-        default:
-          return '未知'
-      }
-    },
+    translateCurrentStatus: translatePatientCurrentStatus,
     onPaginationData (paginationData) {
       this.$refs.pagination.setPaginationData(paginationData)
       this.$refs.paginationInfo.setPaginationData(paginationData)
@@ -125,7 +103,6 @@ export default {
       this.$refs.vuetable.changePage(page)
     },
     onCellDblClicked (data, field, event) {
-      console.log(data)
       this.$refs.vuetable.toggleDetailRow(data.patientId)
     },
     onFilterSet (filterText) {

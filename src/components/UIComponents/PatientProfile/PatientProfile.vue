@@ -18,20 +18,28 @@
         {{ getAge(patient.dateOfBirth) }}岁
 
         <!-- 患者ID -->
-        {{ patient.patientId}}
+        {{ patient.patientId }}
 
       </h4>
-      <p class="category">{{ patient.dateOfBirth }}</p>
+      <p class="category">[国籍|省|市] {{ translateCurrentStatus(patient.currentStatus) }}</p>
     </div><!-- end of header -->
 
     <div class='content'>
-      内容
+      <p>出生日期：{{ formatDate(patient.dateOfBirth) }}</p>
+      <p>身份证号：{{ patient.idNumber }} </p>
+      <p>手机号：{{ patient.phone }} </p>
+      <p>血型：</p>
+      <p>出生地： </p>
+      <p>户口地： </p>
+      <p>居住地： </p>
+      <p>联系人：姓名|关系|联系人住址 </p>
+      <p>职业：</p>
     </div><!-- end of content -->
   </div><!-- end of profile -->
 </template>
 
 <script>
-  import { getAge } from '../../utils'
+  import { getAge, translatePatientCurrentStatus, formatDate } from '../../utils'
   
   export default {
     props: {
@@ -40,7 +48,9 @@
       }
     },
     methods: {
-      getAge: getAge
+      getAge: getAge,
+      translateCurrentStatus: translatePatientCurrentStatus,
+      formatDate: formatDate
     },
     created () {
       console.log(this.patient)
