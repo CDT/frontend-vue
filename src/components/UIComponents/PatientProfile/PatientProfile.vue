@@ -21,7 +21,7 @@
         {{ patient.patientId }}
 
       </h4>
-      <p class="category">[国籍|省|市] {{ translateCurrentStatus(patient.currentStatus) }}</p>
+      <p class="category"> {{ translateCurrentStatus(patient.currentStatus) }}</p>
       <p class="category">[卡磁道：pca.pca_service_card_info]</p>
     </div><!-- end of header -->
 
@@ -29,17 +29,14 @@
       <p>出生日期：{{ formatDate(patient.dateOfBirth) }}</p>
       <p>身份证号：{{ patient.idNumber }} </p>
       <p>手机号：{{ patient.phone }} </p>
-      <p>血型：</p>
-      <p>出生地： </p>
-      <p>户口地： </p>
-      <p>居住地： </p>
-      <p>联系人：姓名|关系|联系人住址 </p>
-      <p>职业：</p>
+      <p>血型：{{ patient.bloodType}}</p>
+      <p>地址：{{ patient.address }}</p>
     </div><!-- end of content -->
   </div><!-- end of profile -->
 </template>
 
 <script>
+  import axios from 'axios'
   import { getAge, translatePatientCurrentStatus, formatDate } from '../../utils'
   
   export default {
@@ -55,6 +52,31 @@
     },
     created () {
       console.log(this.patient)
+      // 翻译血型、地址等码表
+      axios.get('/api/translation',
+        {
+          params: {
+            entries: {
+              bloodType: this.patient.bloodType,
+              nationality: this.patient.nationality,
+              province: this.patient.address.province,
+              city: this.patient.address.city,
+              county: this.patient.address.county
+            }
+          }
+        }
+      )
+      .then(function (response) {
+        console.log(response)
+        if (response.data) {
+          row.password = response.data
+        } else {
+          row.password = '解密失败'
+        }
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
     }
   }
 </script>
