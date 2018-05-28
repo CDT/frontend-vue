@@ -21,16 +21,15 @@
         {{ patient.patientId }}
 
       </h4>
-      <p class="category"> {{ translateCurrentStatus(patient.currentStatus) }}</p>
-      <p class="category">[卡磁道：pca.pca_service_card_info]</p>
+      <p class="category"> {{ translateCurrentStatus(patient.currentStatus) }} {{ patient.cardTrack }}</p>
     </div><!-- end of header -->
 
     <div class='content'>
       <p>出生日期：{{ formatDate(patient.dateOfBirth) }}</p>
       <p>身份证号：{{ patient.idNumber }} </p>
       <p>手机号：{{ patient.phone }} </p>
-      <p>血型：{{ patient.bloodType}}</p>
-      <p>地址：{{ patient.address }}</p>
+      <p>血型：{{ translateBloodType() }}</p>
+      <p>地址：{{ translateAddress() }}</p>
     </div><!-- end of content -->
   </div><!-- end of profile -->
 </template>
@@ -48,17 +47,29 @@
     methods: {
       getAge: getAge,
       translateCurrentStatus: translatePatientCurrentStatus,
-      formatDate: formatDate
+      formatDate: formatDate,
+      translateBloodType () { return this.patient.translated === undefined ? this.patient.bloodType : this.patient.translated.bloodType },
+      translateAddress () {
+        return this.patient.translated === undefined
+          ? this.patient.address
+          : this.patient.translated.nationality + ' ' + this.patient.translated.province + ' ' + this.patient.translated.county + ' ' + this.patient.address.detailAddress +
+            ' 或者 ' + this.patient.address.contactAddress
+      }
+    },
+    data () {
+      return {
+        translated: false
+      }
     },
     created () {
-      console.log(this.patient)
       // 翻译血型、地址等码表
+      let patient = this.patient
       axios.get('/api/translation',
         {
           params: {
             entries: {
               bloodType: this.patient.bloodType,
-              nationality: this.patient.nationality,
+              nationality: this.patient.address.nationality,
               province: this.patient.address.province,
               city: this.patient.address.city,
               county: this.patient.address.county
@@ -67,12 +78,22 @@
         }
       )
       .then(function (response) {
-        console.log(response)
-        if (response.data) {
-          row.password = response.data
-        } else {
-          row.password = '解密失败'
+        patient.translated = response.data
+      })
+      .catch(function (error) {
+        alert(error)
+      })
+
+      axios.get('/api/cardTrack',
+        {
+          params: {
+            id: patient.patientId
+          }
         }
+      )
+      .then(function (response) {
+        console.log(response)
+        patient.cardTrack = response.data
       })
       .catch(function (error) {
         console.log(error)
