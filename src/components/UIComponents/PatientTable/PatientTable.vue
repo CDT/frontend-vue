@@ -38,12 +38,13 @@
 
 <script>
 import Vue from 'vue'
+import axios from 'axios'
 import FieldDef from './field-def.js'
 import BootstrapStyle from './bootstrap-css.js'
 import CustomActions from './CustomActions'
 import DetailRow from './DetailRow'
 import FilterBar from '../Inputs/FilterBar'
-import { translatePatientCurrentStatus, formatDate } from '../../utils'
+import { formatDate } from '../../utils'
 
 Vue.component('custom-actions-patient', CustomActions)
 Vue.component('detail-row-patient', DetailRow)
@@ -94,7 +95,24 @@ export default {
         ? '(空)'
         : value
     },
-    translateCurrentStatus: translatePatientCurrentStatus,
+    translateCurrentStatus (value) {
+      if (value == null) return '未知'
+      axios.get('/api/translation',
+        {
+          params: {
+            entries: {
+              currentStatus: value
+            }
+          }
+        }
+      )
+      .then(function (response) {
+        return response.data.currentStatus
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
+    },
     onPaginationData (paginationData) {
       this.$refs.pagination.setPaginationData(paginationData)
       this.$refs.paginationInfo.setPaginationData(paginationData)
