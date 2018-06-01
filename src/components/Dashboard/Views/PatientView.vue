@@ -8,7 +8,10 @@
                     type="pills"
                     v-model="currentTab">
                 <v-tab title="患者列表" icon="ti-user">
-                  <patient-table></patient-table>
+                  <div class="pv-input">
+                    啦啦啦
+                  </div>
+                  <patient-table class="pv-hide"></patient-table>
                 </v-tab>     
                 <v-tab v-for="(tab, index) in tabs" :key="tab.key" :icon="tab.icon" 
                 :title="tab.key">
@@ -65,11 +68,14 @@
 
 </script>
 <style>
-.tab-close{
+.tab-close {
   float:right;
 }
-.tab-close:hover{
+.tab-close:hover {
   transition: all 0.5s;
   transform: rotate(10deg);
+}
+.pv-hide {
+  display: none;
 }
 </style>

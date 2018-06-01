@@ -92,7 +92,6 @@ export default {
   },
   mounted () {
     this.$events.listen('filter-set', filterText => this.onFilterSet(filterText))
-    this.$events.listen('filter-reset', () => this.onFilterReset())
   },
   methods: {
     renderIcon (classes, options) {
@@ -145,11 +144,6 @@ export default {
       this.moreParams = {
         'filter': filterText
       }
-      Vue.nextTick(() => this.$refs.vuetable.refresh())
-    },
-    onFilterReset () {
-      this.moreParams = {}
-      this.$refs.vuetable.refresh()
       Vue.nextTick(() => this.$refs.vuetable.refresh())
     },
     onLoaded () {
