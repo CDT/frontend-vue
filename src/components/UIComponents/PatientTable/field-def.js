@@ -25,11 +25,10 @@ export default [
     callback: 'genderLabel'
   },
   {
-    name: 'currentStatus',
-    title: '<span class="glyphicon glyphicon-tag"></span> 当前状态',
+    name: '__component:patientcurrentstatus',
+    title: '患者在院状态',
     titleClass: 'text-center',
-    dataClass: 'text-center',
-    callback: 'translateCurrentStatus'
+    dataClass: 'text-center'
   },
   {
     name: 'dateOfBirth',

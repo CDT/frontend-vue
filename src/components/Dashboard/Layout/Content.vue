@@ -2,8 +2,10 @@
   <div class="content">
     <div class="container-fluid">
         <transition name="fade" mode="out-in">
+          <keep-alive>
           <!-- your content here -->
-          <router-view></router-view>
+            <router-view></router-view>
+          </keep-alive>
         </transition>
     </div>
   </div>

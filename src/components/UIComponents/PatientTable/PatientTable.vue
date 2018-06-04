@@ -5,7 +5,7 @@
       <p class="category">所有患者</p>
     </div>
     <br>
-    <filter-bar></filter-bar>
+    <filter-bar source="patient"></filter-bar>
     <vuetable ref="vuetable"
       :fields="fields"
       :css="css"
@@ -22,6 +22,9 @@
       @vuetable:cell-dblclicked="onCellDblClicked"
       @vuetable:pagination-data="onPaginationData"
     >
+      <template slot="patientcurrentstatus" scope="props">
+        {{ props }}
+      </template>
     </vuetable>
     <div>
       <vuetable-pagination-info ref="paginationInfo"
@@ -48,6 +51,7 @@ import { formatDate } from '../../utils'
 
 Vue.component('custom-actions-patient', CustomActions)
 Vue.component('detail-row-patient', DetailRow)
+Vue.component('patientcurrentstatus', CustomActions)
 
 export default {
   props: {
@@ -74,7 +78,7 @@ export default {
     }
   },
   mounted () {
-    this.$events.listen('filter-set', filterText => this.onFilterSet(filterText))
+    this.$events.listen('filter-set-patient', filterText => this.onFilterSet(filterText))
   },
   methods: {
     renderIcon (classes, options) {
@@ -94,19 +98,19 @@ export default {
         ? '(空)'
         : value
     },
-    translateCurrentStatus (value) {
-      if (value == null) return '未知'
-      axios.get('/api/translation',
+    getCurrentStatus (value, row) {
+      console.log(row)
+      axios.get('/api/visit',
         {
           params: {
-            entries: {
-              currentStatus: value
-            }
+            patientId: row.patientId,
+            type: 'inpatient',
+            numberOfVisit: '-1' // 最近一次
           }
         }
       )
       .then(function (response) {
-        return response.data.currentStatus
+        return response.data.displayName
       })
       .catch(function (error) {
         console.log(error)

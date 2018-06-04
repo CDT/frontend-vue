@@ -13,6 +13,12 @@
 
 <script>
 export default {
+  props: {
+    source: {
+      type: String,
+      default: ''
+    }
+  },
   data () {
     return {
       filterText: ''
@@ -20,7 +26,8 @@ export default {
   },
   methods: {
     doFilter () {
-      this.$events.fire('filter-set', this.filterText)
+      console.log('event: filter-set-' + this.source)
+      this.$events.fire('filter-set-' + this.source, this.filterText)
     }
     // resetFilter () {
     //   this.filterText = ''  // clear the text in text input

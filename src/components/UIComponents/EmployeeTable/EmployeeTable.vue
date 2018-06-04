@@ -7,7 +7,7 @@
       </slot>
     </div>
     <br>
-    <filter-bar></filter-bar>
+    <filter-bar source="employee"></filter-bar>
     <vuetable ref="vuetable"
       :fields="fields"
       :css="css"
@@ -91,7 +91,7 @@ export default {
     }
   },
   mounted () {
-    this.$events.listen('filter-set', filterText => this.onFilterSet(filterText))
+    this.$events.listen('filter-set-employee', filterText => this.onFilterSet(filterText))
   },
   methods: {
     renderIcon (classes, options) {
