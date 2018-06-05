@@ -23,7 +23,7 @@
       @vuetable:pagination-data="onPaginationData"
     >
       <template slot="patientcurrentstatus" scope="props">
-        {{ props }}
+        {{ getCurrentStatus(props.rowData.patientId) }}
       </template>
     </vuetable>
     <div>
@@ -51,7 +51,6 @@ import { formatDate } from '../../utils'
 
 Vue.component('custom-actions-patient', CustomActions)
 Vue.component('detail-row-patient', DetailRow)
-Vue.component('patientcurrentstatus', CustomActions)
 
 export default {
   props: {
@@ -98,12 +97,11 @@ export default {
         ? '(空)'
         : value
     },
-    getCurrentStatus (value, row) {
-      console.log(row)
+    getCurrentStatus (patientId) {
       axios.get('/api/visit',
         {
           params: {
-            patientId: row.patientId,
+            patientId: patientId,
             type: 'inpatient',
             numberOfVisit: '-1' // 最近一次
           }

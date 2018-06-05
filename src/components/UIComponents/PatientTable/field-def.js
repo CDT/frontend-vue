@@ -25,7 +25,7 @@ export default [
     callback: 'genderLabel'
   },
   {
-    name: '__component:patientcurrentstatus',
+    name: '__slot:patientcurrentstatus',
     title: '患者在院状态',
     titleClass: 'text-center',
     dataClass: 'text-center'
