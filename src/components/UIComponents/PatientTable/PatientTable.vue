@@ -22,7 +22,7 @@
       @vuetable:cell-dblclicked="onCellDblClicked"
       @vuetable:pagination-data="onPaginationData"
     >
-      <template slot="patientcurrentstatus" scope="props">
+      <template slot="patient-current-status" scope="props">
         {{ getCurrentStatus(props.rowData.patientId) }}
       </template>
     </vuetable>
@@ -47,7 +47,7 @@ import BootstrapStyle from './bootstrap-css.js'
 import CustomActions from './CustomActions'
 import DetailRow from './DetailRow'
 import FilterBar from '../Inputs/FilterBar'
-import { formatDate } from '../../utils'
+import { formatDate, onNullValue } from '../../utils'
 
 Vue.component('custom-actions-patient', CustomActions)
 Vue.component('detail-row-patient', DetailRow)
@@ -92,27 +92,19 @@ export default {
         : '<span class="label label-info"><i class="fa fa-venus"></i>女</span>'
     },
     formatDate: formatDate,
-    onNullValue (value) {
-      return value == null
-        ? '(空)'
-        : value
-    },
-    getCurrentStatus (patientId) {
-      axios.get('/api/visit',
+    onNullValue: onNullValue,
+    async getCurrentStatus (patientId) {
+      console.log('getcurrentstatus being executed:' + patientId)
+      var response = await axios.get('/api/visit',
         {
           params: {
-            patientId: patientId,
+            id: patientId,
             type: 'inpatient',
-            numberOfVisit: '-1' // 最近一次
+            range: '-1' // 最近一次
           }
         }
       )
-      .then(function (response) {
-        return response.data.displayName
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
+      return response
     },
     onPaginationData (paginationData) {
       this.$refs.pagination.setPaginationData(paginationData)

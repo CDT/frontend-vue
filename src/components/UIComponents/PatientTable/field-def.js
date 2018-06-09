@@ -25,7 +25,7 @@ export default [
     callback: 'genderLabel'
   },
   {
-    name: '__slot:patientcurrentstatus',
+    name: '__slot:patient-current-status',
     title: '患者在院状态',
     titleClass: 'text-center',
     dataClass: 'text-center'
@@ -48,7 +48,8 @@ export default [
     name: 'phone',
     title: '<span class="glyphicon glyphicon-tag"></span> 手机号',
     titleClass: 'text-center',
-    dataClass: 'text-center'
+    dataClass: 'text-center',
+    callback: 'onNullValue'
   },
   {
     name: '__component:custom-actions-patient',

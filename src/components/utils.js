@@ -21,7 +21,15 @@ export const getAge = function (dateString) {
 }
 
 export const formatDate = function (value, fmt = 'YYYY年M月D日') {
-  return (value == null)
-    ? ''
+  let formattedDate =
+   (value == null)
+    ? null
     : moment(value, 'YYYY-MM-DD').format(fmt)
+  return onNullValue(formattedDate)
+}
+
+export const onNullValue = function (value) {
+  return value == null
+    ? '(未登记)'
+    : value
 }
