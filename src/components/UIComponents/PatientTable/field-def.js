@@ -25,8 +25,8 @@ export default [
     callback: 'genderLabel'
   },
   {
-    name: '__slot:patient-current-status',
-    title: '患者在院状态',
+    name: 'currentStatus',
+    title: '<span class="glyphicon glyphicon-expand"></span> 当前状态',
     titleClass: 'text-center',
     dataClass: 'text-center'
   },

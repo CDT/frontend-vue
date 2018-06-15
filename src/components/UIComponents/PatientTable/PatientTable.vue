@@ -22,9 +22,6 @@
       @vuetable:cell-dblclicked="onCellDblClicked"
       @vuetable:pagination-data="onPaginationData"
     >
-      <template slot="patient-current-status" scope="props">
-        {{ getCurrentStatus(props.rowData.patientId) }}
-      </template>
     </vuetable>
     <div>
       <vuetable-pagination-info ref="paginationInfo"
@@ -41,7 +38,7 @@
 
 <script>
 import Vue from 'vue'
-import axios from 'axios'
+// import axios from 'axios'
 import FieldDef from './field-def.js'
 import BootstrapStyle from './bootstrap-css.js'
 import CustomActions from './CustomActions'
@@ -93,19 +90,6 @@ export default {
     },
     formatDate: formatDate,
     onNullValue: onNullValue,
-    async getCurrentStatus (patientId) {
-      console.log('getcurrentstatus being executed:' + patientId)
-      var response = await axios.get('/api/visit',
-        {
-          params: {
-            id: patientId,
-            type: 'inpatient',
-            range: '-1' // 最近一次
-          }
-        }
-      )
-      return response
-    },
     onPaginationData (paginationData) {
       this.$refs.pagination.setPaginationData(paginationData)
       this.$refs.paginationInfo.setPaginationData(paginationData)
