@@ -1,4 +1,5 @@
 import moment from 'moment'
+import axios from 'axios'
 
 export const hasDuplicate = function (tabs, tab) {
   for (let i = 0; i < tabs.length; i++) {
@@ -32,4 +33,20 @@ export const onNullValue = function (value) {
   return value == null
     ? '(未登记)'
     : value
+}
+
+// This function is asynchronous
+export const getDisplay = (fieldName, field) => {
+  axios.get('/api/getDisplay', {
+    params: {
+      fieldName: fieldName,
+      fieldValue: field.value
+    }
+  })
+  .then(response => {
+    field.display = response.data
+  })
+  .catch(err => {
+    console.log(err)
+  })
 }

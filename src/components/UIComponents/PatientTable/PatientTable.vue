@@ -21,6 +21,7 @@
       track-by='patientId'
       @vuetable:cell-dblclicked="onCellDblClicked"
       @vuetable:pagination-data="onPaginationData"
+      @vuetable:loaded="onLoaded"
     >
     </vuetable>
     <div>
@@ -38,13 +39,13 @@
 
 <script>
 import Vue from 'vue'
-// import axios from 'axios'
+import axios from 'axios'
 import FieldDef from './field-def.js'
 import BootstrapStyle from './bootstrap-css.js'
 import CustomActions from './CustomActions'
 import DetailRow from './DetailRow'
 import FilterBar from '../Inputs/FilterBar'
-import { formatDate, onNullValue } from '../../utils'
+import { formatDate, onNullValue, getDisplay } from '../../utils'
 
 Vue.component('custom-actions-patient', CustomActions)
 Vue.component('detail-row-patient', DetailRow)
@@ -105,6 +106,57 @@ export default {
         'filter': filterText
       }
       Vue.nextTick(() => this.$refs.vuetable.refresh())
+    },
+    onStatusUpdate (currentStatus) {
+      if (!currentStatus || !currentStatus.display) {
+        return '<i class="fa fa-spinner fa-spin"></i>获取状态中'
+      } else {
+        return currentStatus.display
+      }
+    },
+    onLoaded () {
+      let data = this.$refs.vuetable.tableData
+      if (data && data.length > 0) {
+        data.forEach(row => {
+          axios.get('/api/visit', {
+            params: {
+              id: row.patientId,
+              type: 'inpatient',
+              range: 'latest'
+            }
+          })
+          .then(function (response) {
+            // Initialize currentStatus and add reactivity to display property
+            row.currentStatus = {}
+            Vue.set(row.currentStatus, 'display', '')
+
+            let visits = response.data
+            if (visits) {
+              if (visits.length > 0) {
+                row.currentStatus.value = visits[0].currentStatus
+                getDisplay('patientCurrentStatus', row.currentStatus)
+              } else {
+                row.currentStatus = {
+                  value: 0,
+                  display: '未曾住院'
+                }
+              }
+            } else {
+              row.currentStatus = {
+                value: -1,
+                display: '状态未知'
+              }
+            }
+          })
+          .catch(function (error) {
+            console.log(error)
+            row.currentStatus = {
+              value: -1,
+              display: '状态未知'
+            }
+          })
+        })
+      }
     }
   }
 }

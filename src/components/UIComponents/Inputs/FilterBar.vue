@@ -26,7 +26,6 @@ export default {
   },
   methods: {
     doFilter () {
-      console.log('event: filter-set-' + this.source)
       this.$events.fire('filter-set-' + this.source, this.filterText)
     }
     // resetFilter () {
