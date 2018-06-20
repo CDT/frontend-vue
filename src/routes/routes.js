@@ -6,10 +6,10 @@ import NotFound from '../components/GeneralViews/NotFoundPage.vue'
 import Overview from 'src/components/Dashboard/Views/Overview.vue'
 import UserProfile from 'src/components/Dashboard/Views/UserProfile.vue'
 import Notifications from 'src/components/Dashboard/Views/Notifications.vue'
-import Icons from 'src/components/Dashboard/Views/Icons.vue'
+import MedicalRecordQualityControl from 'src/components/Dashboard/Views/MedicalRecordQualityControl.vue'
 import Maps from 'src/components/Dashboard/Views/Maps.vue'
-import PatientView from 'src/components/Dashboard/Views/PatientView.vue'
-import EmployeeList from 'src/components/Dashboard/Views/EmployeeList.vue'
+import Patients from 'src/components/Dashboard/Views/Patients.vue'
+import Employees from 'src/components/Dashboard/Views/Employees.vue'
 
 const routes = [
   {
@@ -35,8 +35,8 @@ const routes = [
         component: Notifications
       },
       {
-        path: 'icons',
-        component: Icons
+        path: 'mrqc',
+        component: MedicalRecordQualityControl
       },
       {
         path: 'maps',
@@ -44,11 +44,11 @@ const routes = [
       },
       {
         path: 'patientview',
-        component: PatientView
+        component: Patients
       },
       {
         path: 'table-list',
-        component: EmployeeList
+        component: Employees
       }
     ]
   },

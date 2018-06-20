@@ -26,7 +26,7 @@
   }
   </script>
 
-  <style>
+  <style scoped>
     .custom-actions button.ui.button {
       padding: 8px 8px;
     }

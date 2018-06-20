@@ -47,7 +47,8 @@
   }
 
 </script>
-<style>
+
+<style scoped>
 .vue-tabs .nav-tabs {
   background:white;
 }

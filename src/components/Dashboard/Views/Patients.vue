@@ -64,12 +64,6 @@
   }
 
 </script>
+
 <style>
-.tab-close {
-  float:right;
-}
-.tab-close:hover {
-  transition: all 0.5s;
-  transform: rotate(10deg);
-}
 </style>

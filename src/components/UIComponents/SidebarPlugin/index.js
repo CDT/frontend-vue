@@ -19,20 +19,20 @@ const SidebarStore = {
       path: '/admin/patientview'
     },
     {
-      name: 'Icons',
-      icon: 'ti-pencil-alt2',
-      path: '/admin/icons'
+      name: '病历质控',
+      icon: 'ti-book',
+      path: '/admin/mrqc'
     },
-    {
-      name: 'Maps',
-      icon: 'ti-map',
-      path: '/admin/maps'
-    },
-    {
-      name: 'Notifications',
-      icon: 'ti-bell',
-      path: '/admin/notifications'
-    },
+    // {
+    //   name: 'Maps',
+    //   icon: 'ti-map',
+    //   path: '/admin/maps'
+    // },
+    // {
+    //   name: 'Notifications',
+    //   icon: 'ti-bell',
+    //   path: '/admin/notifications'
+    // },
     {
       name: '用户资料',
       icon: 'ti-user',

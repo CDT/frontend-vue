@@ -47,18 +47,18 @@ import DetailRow from './DetailRow'
 import FilterBar from '../Inputs/FilterBar'
 import { formatDate, onNullValue, getDisplay } from '../../utils'
 
-Vue.component('custom-actions-patient', CustomActions)
 Vue.component('detail-row-patient', DetailRow)
+Vue.component('custom-actions-patient', CustomActions)
 
 export default {
+  components: {
+    'filter-bar': FilterBar
+  },
   props: {
     type: {
       type: String, // striped | hover
       default: 'striped'
     }
-  },
-  components: {
-    'filter-bar': FilterBar
   },
   data () {
     return {
