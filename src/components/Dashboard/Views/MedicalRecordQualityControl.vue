@@ -9,7 +9,7 @@
                   <rules-panel></rules-panel>
                 </v-tab>
                 <v-tab title="质控结果" icon="ti-check-box">
-                  质控结果
+                  <evaluation-results></evaluation-results>
                 </v-tab>
             </vue-tabs>
         </div>
@@ -19,10 +19,12 @@
 <script>
 import globalConfig from 'globalConfig'
 import RulesPanel from 'src/components/UIComponents/MedicalRecordQualityControl/RulesPanel.vue'
+import EvaluationResults from 'src/components/UIComponents/MedicalRecordQualityControl/EvaluationResults.vue'
 
 export default {
   components: {
-    'rules-panel': RulesPanel
+    'rules-panel': RulesPanel,
+    'evaluation-results': EvaluationResults
   },
   data () {
     return {

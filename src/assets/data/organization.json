@@ -1,0 +1,93 @@
+{
+  "organization": {
+    "name": "同济医院",
+    "subordinates": [
+      {
+        "name": "内科",
+        "type": "department",
+        "subordinates": {
+          "name": "消化内科",
+          "type": "department",
+          "subordinates": [
+            {
+              "branch": "H0001",
+              "type":"ward",
+              "name": "消化内科I病区"
+            },
+            {
+              "branch": "H0001", 
+              "type":"ward",
+              "name": "消化内科II病区"
+            }
+          ]
+        }
+      }, 
+      {
+        "name": "神经内科",
+        "type": "department",
+        "subordinates": [
+          {
+            "branch": "H0001", 
+            "type":"ward",
+            "name": "神经内科I病区"
+          },
+          {
+            "branch": "H0001", 
+            "type":"ward",
+            "name": "神经内科II病区"
+          },
+          {
+            "branch": "H0001", 
+            "type":"ward",
+            "name": "神经内科III病区"
+          },
+          {
+            "branch": "H0001", 
+            "type":"ward",
+            "name": "神经内科IV病区"
+          },
+          {
+            "branch": "H0001", 
+            "type":"ward",
+            "name": "神经内科ICU"
+          }
+        ]
+      },
+      {
+        "name": "外科",
+        "type": "department",
+        "subordinates": {
+          "name": "骨科",
+          "type": "department",
+          "subordinates": [
+            {
+              "branch": "H0001", 
+              "type":"ward",
+              "name": "骨科I病区"
+            },
+            {
+              "branch": "H0001", 
+              "type":"ward",
+              "name": "骨科II病区"
+            },
+            {
+              "branch": "H0001", 
+              "type":"ward",
+              "name": "骨科III病区"
+            },
+            {
+              "branch": "H0001", 
+              "type":"ward",
+              "name": "骨科IV病区"
+            },
+            {
+              "branch": "H0001", 
+              "type":"ward",
+              "name": "骨科V病区"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

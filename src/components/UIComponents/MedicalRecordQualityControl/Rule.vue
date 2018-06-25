@@ -29,7 +29,7 @@
     align-items: center;
     justify-content: space-between;
     .label {
-        color: #fff;
+        color: black;
         font-size: 16px;
     }
 }
