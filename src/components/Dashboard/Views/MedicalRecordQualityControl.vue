@@ -1,18 +1,18 @@
 <template>
     <div class="row">
       <div class="col-md-12">
-        <div class="card">
+        <div class="tabs">
           <vue-tabs :active-tab-color=tabColor
                       active-text-color="white"
                       type="pills">
-                <v-tab title="质控规则" icon="ti-settings">
+                <v-tab title="质控规则" icon="ti-settings">                  
                   <rules-panel></rules-panel>
                 </v-tab>
                 <v-tab title="质控结果" icon="ti-check-box">
                   <evaluation-results></evaluation-results>
                 </v-tab>
             </vue-tabs>
-        </div>
+        </div> <!--end of tabs-->
       </div>
     </div>
 </template>

@@ -1,28 +1,26 @@
 <template>
     <div class="row">
-      <div class="col-md-12">
-        <div class="card">
+      <div class="col-md-12">        
            <vue-tabs :active-tab-color=tabColor
                       active-text-color="white"
                       type="pills">
-                <v-tab title="人员列表" icon="ti-user">
-                  <employee-table 
-                    :title="title" 
-                    :sub-title="subTitle" 
-                    :api="api"
-                  >
-                  </employee-table>
-                </v-tab>
+              <v-tab title="人员列表" icon="ti-user">
+                <employee-table 
+                  :title="title" 
+                  :sub-title="subTitle" 
+                  :api="api"
+                >
+                </employee-table>
+              </v-tab>
 
-                <v-tab title="人员详情" icon="ti-settings">
-                  Second tab content
-                </v-tab>
+              <v-tab title="人员详情" icon="ti-settings">
+                Second tab content
+              </v-tab>
 
-                <v-tab title="Third tab" icon="ti-check">
-                  Third tab content
-                </v-tab>
-            </vue-tabs>
-          </div>
+              <v-tab title="Third tab" icon="ti-check">
+                Third tab content
+              </v-tab>
+          </vue-tabs>
         </div>
       </div>
     </div>

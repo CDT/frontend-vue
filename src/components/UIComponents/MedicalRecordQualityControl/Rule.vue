@@ -1,8 +1,8 @@
 <template>
-<div class="item">
-  <div class="label">
-    {{ description }}
-  </div>
+<div class="item" @click="select" :class="{selected: selected}">
+  <p class="description">
+    {{index}} {{ description }}
+  </p>
   <label class="switch"><input checked="true" type="checkbox" />
     <div class="slider"></div>
   </label>
@@ -10,17 +10,35 @@
 </template>
 
 <script>
-  export default {
-    props: {
-      description: {
-        type: String,
-        default: ''
-      }
+import $ from 'jquery'
+
+export default {
+  props: {
+    description: {
+      type: String,
+      default: ''
+    },
+    index: {
+      type: String,
+      default: ''
+    }
+  },
+  data () {
+    return {
+      selected: false
+    }
+  },
+  methods: {
+    select () {
+      $('.selected').removeClass('selected')
+      this.selected = true
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>
+$item-background: #e0f7fa;
 
 .item {
     padding: 0 16px;
@@ -28,10 +46,19 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    .label {
+    transition: background 0.5s;
+    &:hover {
+        background-color: $item-background;
+        cursor: pointer;
+    }
+    &.selected {
+        background-color: $item-background;
+    }
+    .description {
         color: black;
         font-size: 16px;
-    }
+        margin: 10px;
+    }    
 }
 
 .switch {

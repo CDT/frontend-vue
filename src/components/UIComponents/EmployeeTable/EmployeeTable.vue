@@ -1,5 +1,5 @@
 <template>
-  <div class="basic-table">
+  <div class="basic-table card">
     <div class="header">
       <slot name="header">
         <h4 class="title">{{title}}</h4>

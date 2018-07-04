@@ -1,5 +1,5 @@
 <template>
-  <div class="basic-table">
+  <div class="basic-table card">
     <div class="header">
       <h4 class="title">患者列表</h4>
       <p class="category">所有患者</p>

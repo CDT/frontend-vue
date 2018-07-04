@@ -1,7 +1,6 @@
 <template>
     <div class="row">
       <div class="col-md-12">
-        <div class="card">
           
           <vue-tabs :active-tab-color=tabColor
                     active-text-color="white"
@@ -22,7 +21,6 @@
 
             </vue-tabs>
             
-        </div>
       </div>
     </div>
 </template>
