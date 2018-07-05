@@ -1,7 +1,7 @@
 <template>
 <div class="item" @click="select" :class="{selected: selected}">
-  <p class="description">
-    {{index}} {{ description }}
+  <p class="name">
+    {{index}} {{ rule.name }}
   </p>
   <label class="switch"><input checked="true" type="checkbox" />
     <div class="slider"></div>
@@ -10,28 +10,30 @@
 </template>
 
 <script>
-import $ from 'jquery'
+import eventBus from '../../../eventBus'
 
 export default {
   props: {
-    description: {
-      type: String,
+    rule: {
+      type: Object,
       default: ''
     },
     index: {
       type: String,
       default: ''
+    },
+    selected: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
     return {
-      selected: false
     }
   },
   methods: {
     select () {
-      $('.selected').removeClass('selected')
-      this.selected = true
+      eventBus.$emit('rule-selected', this.rule)
     }
   }
 }
@@ -54,7 +56,7 @@ $item-background: #e0f7fa;
     &.selected {
         background-color: $item-background;
     }
-    .description {
+    .name {
         color: black;
         font-size: 16px;
         margin: 10px;

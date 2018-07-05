@@ -1,43 +1,59 @@
 <template>
-<div>
+<div class="row">
   <!-- 规则列表 -->
-  <div class="wrapper card col-sm-4">
-    <div class="window">
-      <div class="ruleList">
-        <div v-for="ruleSet, ruleSetIndex in ruleSets">
-          <div class="rule-category"> 
-          {{ ruleSetIndex + 1 }}. {{ ruleSet.category }} 
-          </div>          
-          <rule 
-          v-for="rule, ruleIndex in ruleSet.rules" 
-          :description="rule" 
-          :index="(ruleSetIndex + 1) + '.' + (ruleIndex + 1)"
-          ></rule>
-        </div>      
-      </div>
+  <div class="wrapper col-sm-4">
+    <div class="rule-list card">
+      <div v-for="ruleSet, ruleSetIndex in ruleSets">
+        <div class="rule-category"> 
+        {{ ruleSetIndex + 1 }}. {{ ruleSet.category }} 
+        </div>
+        <rule-title 
+        v-for="rule, ruleIndex in ruleSet.rules" 
+        :rule="rule" 
+        :index="(ruleSetIndex + 1) + '.' + (ruleIndex + 1)"
+        :selected="selectedRule === rule"
+        ></rule-title>
+      </div>    
     </div>
   </div>
 
   <!-- 规则详情 -->
-  <div class="ruleDetails card col-sm-8">
-    asdf
+  <div class="col-sm-8">
+    <rule-detail :rule="selectedRule"></rule-detail>
   </div>
 
 </div>
 </template>
 
 <script>
-import Rule from './Rule.vue'
+import RuleTitle from './RuleTitle.vue'
+import RuleDetail from './RuleDetail.vue'
+import eventBus from '../../../eventBus'
 import { ruleSets } from 'src/assets/data/ruleSets.json'
 
 export default {
   components: {
-    'rule': Rule
+    'rule-title': RuleTitle,
+    'rule-detail': RuleDetail
   },
   data () {
     return {
-      ruleSets: ruleSets
+      ruleSets: ruleSets,
+      selectedRule: null
     }
+  },
+  methods: {
+    showRuleDetails () {
+      console.log('rule selected')
+    },
+    ruleSelected () {
+      console.log(this)
+    }
+  },
+  mounted () {
+    eventBus.$on('rule-selected', rule => {
+      this.selectedRule = rule
+    })
   }
 }
 </script>
@@ -54,16 +70,18 @@ export default {
     display: flex;
     justify-content: center;
     overflow: auto;
-    .window {
-        border-radius: 8px;
-        width: 400px;
-        .ruleList {
-            // height: 100%;
-            padding: 8px 0;
-        }
+    padding: 0px;
+    .rule-list {
+        // height: 100%;
+        padding: 5%;
+        margin: 0 10px;
     }
 }
 
+.rule-details {
+  margin: 0 10px;
+  padding: 5%;
+}
 
 .rule-category {
   font-size: 2rem;
