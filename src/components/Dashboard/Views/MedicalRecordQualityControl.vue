@@ -6,7 +6,7 @@
                       active-text-color="white"
                       type="pills">
                 <v-tab title="质控规则" icon="ti-settings">                  
-                  <rules-panel></rules-panel>
+                  <rule-panel></rule-panel>
                 </v-tab>
                 <v-tab title="质控结果" icon="ti-check-box">
                   <evaluation-results></evaluation-results>
@@ -18,12 +18,12 @@
 </template>
 <script>
 import globalConfig from 'globalConfig'
-import RulesPanel from 'src/components/UIComponents/MedicalRecordQualityControl/RulesPanel.vue'
+import RulePanel from 'src/components/UIComponents/MedicalRecordQualityControl/RulePanel.vue'
 import EvaluationResults from 'src/components/UIComponents/MedicalRecordQualityControl/EvaluationResults.vue'
 
 export default {
   components: {
-    'rules-panel': RulesPanel,
+    'rule-panel': RulePanel,
     'evaluation-results': EvaluationResults
   },
   data () {
