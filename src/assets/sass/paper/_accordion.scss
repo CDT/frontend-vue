@@ -1,0 +1,22 @@
+
+$accordion-focus: #e0f7fa;
+
+.accordion-level {
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background 0.5s;
+  &:hover {
+      background-color: $accordion-focus;
+      cursor: pointer;
+  }
+  &.selected {
+      background-color: $accordion-focus;
+  }
+  .name {
+      color: black;
+      font-size: 16px;
+      margin: 10px;
+  }    
+}

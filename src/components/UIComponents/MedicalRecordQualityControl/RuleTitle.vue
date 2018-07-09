@@ -1,5 +1,5 @@
 <template>
-<div class="item" @click="select" :class="{selected: selected}">
+<div class="accordion-level" @click="select" :class="{selected: selected}">
   <p class="name">
     {{index}} {{ rule.name }}
   </p>
@@ -40,29 +40,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$item-background: #e0f7fa;
-
-.item {
-    padding: 0 16px;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    transition: background 0.5s;
-    &:hover {
-        background-color: $item-background;
-        cursor: pointer;
-    }
-    &.selected {
-        background-color: $item-background;
-    }
-    .name {
-        color: black;
-        font-size: 16px;
-        margin: 10px;
-    }    
-}
-
 .switch {
     width: 60px;
     height: 30px;

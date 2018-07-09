@@ -8,7 +8,7 @@
                 <v-tab title="质控规则" icon="ti-settings">                  
                   <rule-panel></rule-panel>
                 </v-tab>
-                <v-tab title="质控结果" icon="ti-check-box">
+                <v-tab title="质控详情" icon="ti-check-box">
                   <evaluation-results></evaluation-results>
                 </v-tab>
             </vue-tabs>

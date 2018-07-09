@@ -1,0 +1,112 @@
+{
+  "organizations": [{
+    "name": "同济医院",
+    "subordinates": [
+      {
+        "name": "内科",
+        "code": "内科",
+        "type": "department",
+        "subordinates": [
+          {
+            "name": "消化内科",
+            "code": "消化内科",
+            "type": "department",
+            "subordinates": [
+              {
+                "branch": "H0001",
+                "type":"ward",
+                "name": "消化内科I病区",
+                "code": "消化内科I病区"
+              },
+              {
+                "branch": "H0001", 
+                "type":"ward",
+                "name": "消化内科II病区",
+                "code": "消化内科II病区"
+              }
+            ]
+          }
+        ]
+      }, 
+      {
+        "name": "神经内科",
+        "code": "神经内科",
+        "type": "department",
+        "subordinates": [
+          {
+            "branch": "H0001", 
+            "type":"ward",
+            "name": "神经内科I病区",
+            "code": "神经内科I病区"
+          },
+          {
+            "branch": "H0001", 
+            "type":"ward",
+            "name": "神经内科II病区",
+            "code": "神经内科II病区"
+          },
+          {
+            "branch": "H0001", 
+            "type":"ward",
+            "name": "神经内科III病区",
+            "code": "神经内科III病区"
+          },
+          {
+            "branch": "H0001", 
+            "type":"ward",
+            "name": "神经内科IV病区",
+            "code": "神经内科IV病区"
+          },
+          {
+            "branch": "H0001", 
+            "type":"ward",
+            "name": "神经内科ICU",
+            "code": "神经内科ICU"
+          }
+        ]
+      },
+      {
+        "name": "外科",
+        "code": "外科",
+        "type": "department",
+        "subordinates": [{
+          "name": "骨科",
+          "code": "骨科",
+          "type": "department",
+          "subordinates": [
+            {
+              "branch": "H0001", 
+              "type":"ward",
+              "name": "骨科I病区",
+              "code": "骨科I病区"
+            },
+            {
+              "branch": "H0001", 
+              "type":"ward",
+              "name": "骨科II病区",
+              "code": "骨科II病区"
+            },
+            {
+              "branch": "H0001", 
+              "type":"ward",
+              "name": "骨科III病区",
+              "code": "骨科III病区"
+            },
+            {
+              "branch": "H0001", 
+              "type":"ward",
+              "name": "骨科IV病区",
+              "code": "骨科IV病区"
+            },
+            {
+              "branch": "H0001", 
+              "type":"ward",
+              "name": "骨科V病区",
+              "code": "骨科V病区"
+            }
+          ]
+        }]
+      }
+    ]
+  }]
+}

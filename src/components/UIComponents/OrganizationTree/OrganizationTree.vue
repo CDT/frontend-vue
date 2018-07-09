@@ -1,111 +1,77 @@
 <template>
+<div class="card">
 <section class="nav-wrap">	
 	<!-- start accordion nav block -->
 	<nav class="acnav" role="navigation">
-		<!-- start level 1 -->
-		<ul class="acnav__list acnav__list--level1">
+		
+		<!-- 第一层：医院层级 -->
+		<ul v-for="organization in organizations" class="acnav__list acnav__list--level1">
+			<li :class="{ 'has-children' : organization.subordinates }">
+				<p class="acnav__label acnav__label--level1">
+					<i class="fa fa-hospital-o"></i> {{ organization.name }}
+				</p>
+					
+					<!-- 第二层：一级专科 -->
+					<ul class="acnav__list acnav__list--level2">
+						<li :class="{ 'has-children' : firstLevel.subordinates }" v-for="firstLevel in organization.subordinates">
+							<p class="acnav__label acnav__label--level2  accordion-level" :class='{ selected : selectedOrg === firstLevel.code }' @click="selectOrganization(firstLevel.code)">
+								<i class="fa fa-building-o"></i> {{ firstLevel.name }}
+							</p>
 
-			<!-- start group 1 -->
-			<li class="has-children">
-				<div class="acnav__label">
-					Group 1 (level 1)
-				</div>
-				<!-- start level 2 -->
-				<ul class="acnav__list acnav__list--level2">
-					<li>
-						<a class="acnav__link acnav__link--level2" href="">Item (level 2)</a>
-					</li>
+							<!-- 第三层：二级专科或病房 -->
+							<ul class="acnav__list acnav__list--level3" v-for="secondLevel in firstLevel.subordinates">
+								<li :class="{ 'has-children' : secondLevel.subordinates }">
+									<p class="acnav__label acnav__label--level3  accordion-level" :class='{ selected : selectedOrg === secondLevel.code }' @click="selectOrganization(secondLevel.code)">
+										&nbsp;<i v-if="secondLevel.type === 'department'" class="fa fa-building-o"></i>
+										<i v-else-if="secondLevel.type === 'ward'" class="fa fa-bed"></i> 
+                    {{ secondLevel.name }}
+									</p>
 
-					<li class="has-children">
-						<div class="acnav__label acnav__label--level2">
-							Group 1.1 (level 2)
-						</div>
-						<!-- start level 3 -->
-						<ul class="acnav__list acnav__list--level3">
-							<li>
-								<a class="acnav__link acnav__link--level3" href="">Item (level 3)</a>
-							</li>
-							<li class="has-children">
-								<div class="acnav__label acnav__label--level3">
-									Group 1.1.1 (level 3)
-								</div>
-								<!-- start level 4 -->
-								<ul class="acnav__list acnav__list--level4">
-									<li>
-										<a class="acnav__link acnav__link--level4" href="">Item (level 4)</a>
-									</li>
-								</ul>
-								<!-- end level 4 -->
-							</li>
-							<li class="has-children">
-								<div class="acnav__label acnav__label--level3">
-									Group 1.1.2 (level 3)
-								</div>
-								<!-- start level 4 -->
-								<ul class="acnav__list acnav__list--level4">
-									<li>
-										<a class="acnav__link acnav__link--level4" href="">Item (level 4)</a>
-									</li>
-								</ul>
-								<!-- end level 4 -->
-							</li>
-						</ul>
-						<!-- end level 3 -->
-					</li>
+									<!-- 第四层：病房 -->
+									<ul class="acnav__list acnav__list--level4" v-for="thirdLevel in secondLevel.subordinates">
+										<li>
+											<p class="acnav__link acnav__link--level4 accordion-level" :class='{ selected : selectedOrg === thirdLevel.code }' @click="selectOrganization(thirdLevel.code)">
+                        &nbsp;<i v-if="thirdLevel.type === 'department'" class="fa fa-building-o"></i>
+										    <i v-else-if="thirdLevel.type === 'ward'" class="fa fa-bed"></i> 
+												{{ thirdLevel.name }}
+											</p>
+										</li>
+									</ul>
+					
+								</li>
+							</ul>
+							
+						</li>
+					</ul>
 
-					<li class="has-children">
-						<div class="acnav__label acnav__label--level2">
-							Group 1.2 (level 2)
-						</div>
-						<!-- start level 3 -->
-						<ul class="acnav__list acnav__list--level3">
-							<li>
-								<a class="acnav__link acnav__link--level3" href="">Item (level 3)</a>
-							</li>
-							<li class="has-children">
-								<div class="acnav__label acnav__label--level3">
-									Group 1.2.1 (level 3)
-								</div>
-								<!-- start level 4 -->
-								<ul class="acnav__list acnav__list--level4">
-									<li>
-										<a class="acnav__link acnav__link--level4" href="">Item (level 4)</a>
-									</li>
-								</ul>
-								<!-- end level 4 -->
-							</li>
-							<li class="has-children">
-								<div class="acnav__label acnav__label--level3">
-									Group 1.2.2 (level 3)
-								</div>
-								<!-- start level 4 -->
-								<ul class="acnav__list acnav__list--level4">
-									<li>
-										<a class="acnav__link acnav__link--level4" href="">Item (level 4)</a>
-									</li>
-								</ul>
-								<!-- end level 4 -->
-							</li>
-						</ul>
-						<!-- end level 3 -->
-					</li>
-				</ul>
-				<!-- end level 2 -->
 			</li>
-			<!-- end group 1 -->
-
 		</ul>
-		<!-- end level 1 -->
 	</nav>
-	<!-- end accordion nav block -->
-	
 </section>
+</div>
 </template>
 
 <script>
 import $ from 'jquery'
+import organizations from 'src/assets/data/organizations.json'
+import eventBus from 'src/eventBus'
 
 export default {
+  props: {
+    eventSource: {
+      type: String,
+      default: ''
+    },
+    selectedOrg: {
+      type: String,
+      default: ''
+    }
+  },
+  data () {
+    return {
+      organizations: organizations.organizations
+    }
+  },
   mounted () {
     $('.acnav__label').click(function () {
       var label = $(this)
@@ -120,6 +86,11 @@ export default {
         parent.addClass('is-open')
       }
     })
+  },
+  methods: {
+    selectOrganization (orgCode) {
+      eventBus.$emit(this.eventSource + '-organization-selected', orgCode)
+    }
   }
 }
 </script>
@@ -127,14 +98,16 @@ export default {
 <style lang="scss" scoped>
 a {
 	text-decoration: none;
+	color: inherit;
 	&:hover {
 		text-decoration: underline;
+		color: inherit;
 	}
 }
 
 .nav-wrap {
 	width: 100%;
-	margin: 1em auto 0;
+	// margin: 1em auto 0;
 	// @media (min-width: 992px) {
 	// 	width: 50%;
 	// }
@@ -147,8 +120,8 @@ a {
 }
 
 // change colors here
-$color-foreground: #212121; // text and border color
-$color-background: #F5F5F5; // background
+// $color-foreground: #212121; // text and border color
+// $color-background: #F5F5F5; // background
 
 // accordion nav
 .acnav {
@@ -163,7 +136,9 @@ $color-background: #F5F5F5; // background
 
   &__list--level1 {
     // border: 1px solid $color-foreground;
-    border: 1px solid #BDBDBD;
+		// border: 1px solid #BDBDBD;
+		font-size: 2rem;
+		font-weight: bold;
   }
 
   // font awesome icon 'fa-plus'
@@ -185,64 +160,81 @@ $color-background: #F5F5F5; // background
   &__link,
   &__label {
     display: block;
-    font-size: 1rem;
+    // font-size: 1rem;
     padding: 1em;
     margin: 0;
     cursor: pointer;
-    color: $color-foreground;
-    background: $color-background;
-    box-shadow: inset 0 -1px lighten($color-background, 6%);
-    transition: color .25s ease-in, background-color .25s ease-in;
-    &:focus,
-    &:hover {
-      color: darken($color-foreground, 10%);
-      background: darken($color-background, 3%);
-    }
+    // color: $color-foreground;
+    // background: $color-background;
+    // box-shadow: inset 0 -1px lighten($color-background, 6%);
+    // transition: color .25s ease-in, background-color .25s ease-in;
+    // &:focus,
+    // &:hover {
+    //   color: darken($color-foreground, 10%);
+    //   background: darken($color-background, 3%);
+    // }
   }
 
   // second level items
   &__link--level2,
   &__label--level2 {
     padding-left: 3em;
-    background: darken($color-background, 3%);
-    &:focus,
-    &:hover {
-      background: darken($color-background, 6%);
-    }
+    // background: darken($color-background, 3%);
+    // &:focus,
+    // &:hover {
+    //   background: darken($color-background, 6%);
+    // }
   }
 
   // third level items
   &__link--level3,
   &__label--level3 {
     padding-left: 5em;
-    background: darken($color-background, 6%);
-    &:focus,
-    &:hover {
-      background: darken($color-background, 9%);
-    }
+    // background: darken($color-background, 6%);
+    // &:focus,
+    // &:hover {
+    //   background: darken($color-background, 9%);
+    // }
   }
 
   // fourth level items
   &__link--level4,
   &__label--level4 {
     padding-left: 7em;
-    background: darken($color-background, 9%);
-    &:focus,
-    &:hover {
-      background: darken($color-background, 12%);
-    }
+    // background: darken($color-background, 9%);
+    // &:focus,
+    // &:hover {
+    //   background: darken($color-background, 12%);
+    // }
   }
 
-  // hide nested lists
-  &__list--level2,
+	// hide nested lists
+	&__list--level2,
   &__list--level3,
   &__list--level4 {
+		font-weight: normal;
     display: none;
     // open list
     .is-open > & {
       display: block;
     }
-  }
+	}
+	
+	&__label--level1 {
+		font-size: 2rem;
+	}
+
+	&__label--level2 {
+		font-size: 1.8rem;
+	}
+
+	&__label--level3 {
+		font-size: 1.6rem;
+	}
+
+	&__label--level4 {
+		font-size: 1.4rem;
+	}
    
 }
 </style>
