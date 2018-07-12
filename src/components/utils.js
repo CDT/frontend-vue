@@ -1,5 +1,6 @@
 import moment from 'moment'
 import axios from 'axios'
+import branches from 'src/assets/data/branches.json'
 
 export const hasDuplicate = function (tabs, tab) {
   for (let i = 0; i < tabs.length; i++) {
@@ -49,4 +50,15 @@ export const getDisplay = (fieldName, field) => {
   .catch(err => {
     console.log(err)
   })
+}
+
+export const getBranchName = branchCode => {
+  // let count = 0
+  for (var i in branches) {
+    let branch = branches[i]
+    // console.log('第' + (++count) + '次比较：' + branchCode + ' ' + branch.code)
+    if (branchCode === branch.code) {
+      return branch.name
+    }
+  }
 }

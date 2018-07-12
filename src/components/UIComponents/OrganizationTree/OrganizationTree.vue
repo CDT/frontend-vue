@@ -7,33 +7,36 @@
 		<!-- 第一层：医院层级 -->
 		<ul v-for="organization in organizations" class="acnav__list acnav__list--level1">
 			<li :class="{ 'has-children' : organization.subordinates }">
-				<p class="acnav__label acnav__label--level1">
-					<i class="fa fa-hospital-o"></i> {{ organization.name }}
+				<p class="acnav__label acnav__label--level1 accordion-level" :class='{ selected : selectedOrg === organization }' @click="selectOrganization(organization)">
+					<span class="org-hospital">{{ organization.name }}</span>
 				</p>
 					
 					<!-- 第二层：一级专科 -->
 					<ul class="acnav__list acnav__list--level2">
 						<li :class="{ 'has-children' : firstLevel.subordinates }" v-for="firstLevel in organization.subordinates">
-							<p class="acnav__label acnav__label--level2  accordion-level" :class='{ selected : selectedOrg === firstLevel.code }' @click="selectOrganization(firstLevel.code)">
-								<i class="fa fa-building-o"></i> {{ firstLevel.name }}
+							<p class="acnav__label acnav__label--level2  accordion-level" :class='{ selected : selectedOrg === firstLevel }' @click="selectOrganization(firstLevel)">
+								<span class="org-department">{{ firstLevel.name }}</span>
 							</p>
 
 							<!-- 第三层：二级专科或病房 -->
 							<ul class="acnav__list acnav__list--level3" v-for="secondLevel in firstLevel.subordinates">
 								<li :class="{ 'has-children' : secondLevel.subordinates }">
-									<p class="acnav__label acnav__label--level3  accordion-level" :class='{ selected : selectedOrg === secondLevel.code }' @click="selectOrganization(secondLevel.code)">
-										&nbsp;<i v-if="secondLevel.type === 'department'" class="fa fa-building-o"></i>
-										<i v-else-if="secondLevel.type === 'ward'" class="fa fa-bed"></i> 
-                    {{ secondLevel.name }}
+									<p class="acnav__label acnav__label--level3  accordion-level" :class='{ selected : selectedOrg === secondLevel }' @click="selectOrganization(secondLevel)">
+
+                    <span :class="'org-' + secondLevel.type">
+                      <span v-if="secondLevel.branch">{{ getBranchName(secondLevel.branch) }}</span>
+                      {{ secondLevel.name }}
+                    </span>
 									</p>
 
 									<!-- 第四层：病房 -->
 									<ul class="acnav__list acnav__list--level4" v-for="thirdLevel in secondLevel.subordinates">
 										<li>
-											<p class="acnav__link acnav__link--level4 accordion-level" :class='{ selected : selectedOrg === thirdLevel.code }' @click="selectOrganization(thirdLevel.code)">
-                        &nbsp;<i v-if="thirdLevel.type === 'department'" class="fa fa-building-o"></i>
-										    <i v-else-if="thirdLevel.type === 'ward'" class="fa fa-bed"></i> 
-												{{ thirdLevel.name }}
+											<p class="acnav__link acnav__link--level4 accordion-level" :class='{ selected : selectedOrg === thirdLevel }' @click="selectOrganization(thirdLevel)">
+                        <span class="org-ward">
+                          <span v-if="thirdLevel.branch">{{ getBranchName(thirdLevel.branch) }}</span>
+												  {{ thirdLevel.name }}
+                        </span>
 											</p>
 										</li>
 									</ul>
@@ -55,6 +58,7 @@
 import $ from 'jquery'
 import organizations from 'src/assets/data/organizations.json'
 import eventBus from 'src/eventBus'
+import { getBranchName } from 'src/components/utils'
 
 export default {
   props: {
@@ -63,7 +67,7 @@ export default {
       default: ''
     },
     selectedOrg: {
-      type: String,
+      type: Object,
       default: ''
     }
   },
@@ -88,9 +92,10 @@ export default {
     })
   },
   methods: {
-    selectOrganization (orgCode) {
-      eventBus.$emit(this.eventSource + '-organization-selected', orgCode)
-    }
+    selectOrganization (selectedOrg) {
+      eventBus.$emit(this.eventSource + '-organization-selected', selectedOrg)
+    },
+    getBranchName: getBranchName
   }
 }
 </script>

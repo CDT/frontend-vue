@@ -1,4 +1,13 @@
 <template>
+  <div class="row">
+  
+  <!-- 科室索引 -->
+  <div class="col-sm-3">
+    <organization-tree eventSource="patient-table" :selectedOrg="selectedOrg"></organization-tree>
+  </div>
+
+  <!-- 患者列表 -->
+  <div class="col-sm-9">
   <div class="basic-table card">
     <div class="header">
       <h4 class="title">患者列表</h4>
@@ -35,6 +44,9 @@
       ></vuetable-pagination>
     </div>
   </div>
+  </div><!-- col-sm-9 -->
+
+  </div><!-- end of row -->
 </template>
 
 <script>
@@ -45,14 +57,17 @@ import BootstrapStyle from './bootstrap-css.js'
 import CustomActions from './CustomActions'
 import DetailRow from './DetailRow'
 import FilterBar from '../Inputs/FilterBar'
+import OrganizationTree from 'src/components/UIComponents/OrganizationTree/OrganizationTree.vue'
 import { formatDate, onNullValue, getDisplay } from '../../utils'
+import eventBus from 'src/eventBus'
 
 Vue.component('detail-row-patient', DetailRow)
 Vue.component('custom-actions-patient', CustomActions)
 
 export default {
   components: {
-    'filter-bar': FilterBar
+    'filter-bar': FilterBar,
+    'organization-tree': OrganizationTree
   },
   props: {
     type: {
@@ -71,11 +86,16 @@ export default {
           direction: 'asc'
         }
       ],
-      moreParams: {}
+      moreParams: this.selectedOrg ? { org: this.selectedOrg.code } : {},
+      selectedOrg: null
     }
   },
   mounted () {
     this.$events.listen('filter-set-patient', filterText => this.onFilterSet(filterText))
+    eventBus.$on('patient-table-organization-selected', selectedOrg => {
+      this.selectedOrg = selectedOrg
+      console.log('已选择科室：' + selectedOrg.code + ' ' + selectedOrg.name)
+    })
   },
   methods: {
     renderIcon (classes, options) {

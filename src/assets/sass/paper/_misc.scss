@@ -157,3 +157,22 @@ hr {
   text-align: center;
 }
 
+.org-hospital, .org-department, .org-ward {
+  &::before {
+    font-weight: normal;
+    font-family: FontAwesome;
+    padding-right: 1rem;
+  }
+}
+
+.org-hospital::before {
+  content: '\f0f8';
+}
+
+.org-department::before {
+  content: '\f0f7';
+}
+
+.org-ward::before {
+  content: '\f236'
+}

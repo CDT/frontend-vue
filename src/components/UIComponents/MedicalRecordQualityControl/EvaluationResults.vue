@@ -2,13 +2,15 @@
 <div class="row">
   <!-- 组织机构数 -->
   <div class="col-sm-4">
-    <organization-tree eventSource="evaluation-results" selectedOrg="selectedOrg"></organization-tree>
+    <organization-tree eventSource="evaluation-results" :selectedOrg="selectedOrg"></organization-tree>
   </div>
 
   <!-- 质控详情 -->
   <div class="col-sm-8">
     <div class="card">
-      科室质控结果
+      <h1 class="org-name" :class="selectedOrg ? 'org-' + selectedOrg.type : ''">
+        {{ selectedOrg ? (selectedOrg.branch ? getBranchName(selectedOrg.branch) + ' ' : '')  + selectedOrg.name : '请选择一个科室' }}
+      </h1>
     </div>
   </div>
 </div>
@@ -16,6 +18,7 @@
 
 <script>
 import OrganizationTree from 'src/components/UIComponents/OrganizationTree/OrganizationTree.vue'
+import { getBranchName } from 'src/components/utils'
 import eventBus from 'src/eventBus'
 
 export default {
@@ -24,16 +27,26 @@ export default {
   },
   data () {
     return {
-      selectedOrg: ''
+      selectedOrg: null
     }
   },
+  methods: {
+    getBranchName: getBranchName
+  },
   mounted () {
-    eventBus.$on('evaluation-results-organization-selected', orgCode => {
-      this.selectedOrg = orgCode
+    eventBus.$on('evaluation-results-organization-selected', selectedOrg => {
+      this.selectedOrg = selectedOrg
+      console.log('已选择科室：' + selectedOrg.code + ' ' + selectedOrg.name)
     })
   }
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+* {
+  margin: 0px;
+}
+h1 {
+  padding: 2rem;
+}
 </style>

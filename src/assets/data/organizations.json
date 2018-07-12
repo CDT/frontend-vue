@@ -1,28 +1,35 @@
 {
   "organizations": [{
     "name": "同济医院",
+    "type": "hospital",
     "subordinates": [
       {
         "name": "内科",
-        "code": "内科",
+        "code": "NK",
         "type": "department",
         "subordinates": [
           {
             "name": "消化内科",
-            "code": "消化内科",
+            "code": "NKXH",
             "type": "department",
             "subordinates": [
               {
                 "branch": "H0001",
                 "type":"ward",
-                "name": "消化内科I病区",
-                "code": "消化内科I病区"
+                "name": "消化内科病房",
+                "code": "11010301"
               },
               {
-                "branch": "H0001", 
+                "branch": "H0002", 
                 "type":"ward",
-                "name": "消化内科II病区",
-                "code": "消化内科II病区"
+                "name": "消化内科病房",
+                "code": "21010602"
+              },
+              {
+                "branch": "H0003", 
+                "type":"ward",
+                "name": "消化内科病房",
+                "code": "31010502"
               }
             ]
           }
