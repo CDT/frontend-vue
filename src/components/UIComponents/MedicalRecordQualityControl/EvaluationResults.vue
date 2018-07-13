@@ -36,7 +36,6 @@ export default {
   mounted () {
     eventBus.$on('evaluation-results-organization-selected', selectedOrg => {
       this.selectedOrg = selectedOrg
-      console.log('已选择科室：' + selectedOrg.code + ' ' + selectedOrg.name)
     })
   }
 }

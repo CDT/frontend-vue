@@ -86,15 +86,19 @@ export default {
           direction: 'asc'
         }
       ],
-      moreParams: this.selectedOrg ? { org: this.selectedOrg.code } : {},
-      selectedOrg: null
+      moreParams: {},
+      selectedOrg: null,
+      currentOrgPatients: null
     }
   },
   mounted () {
     this.$events.listen('filter-set-patient', filterText => this.onFilterSet(filterText))
     eventBus.$on('patient-table-organization-selected', selectedOrg => {
       this.selectedOrg = selectedOrg
+      this.moreParams = { org: selectedOrg.code }
       console.log('已选择科室：' + selectedOrg.code + ' ' + selectedOrg.name)
+      Vue.nextTick(() => this.$refs.vuetable.refresh())
+      // this.$refs.vuetable.refresh()
     })
   },
   methods: {
@@ -122,8 +126,10 @@ export default {
       this.$refs.vuetable.toggleDetailRow(data.patientId)
     },
     onFilterSet (filterText) {
+      console.log(this.moreParams)
       this.moreParams = {
-        'filter': filterText
+        org: this.selectedOrg.code,
+        filter: filterText
       }
       Vue.nextTick(() => this.$refs.vuetable.refresh())
     },
@@ -138,7 +144,7 @@ export default {
       let data = this.$refs.vuetable.tableData
       if (data && data.length > 0) {
         data.forEach(row => {
-          axios.get('/api/visit', {
+          axios.get('/api/visits', {
             params: {
               id: row.patientId,
               type: 'inpatient',
