@@ -26,7 +26,7 @@
       detail-row-component="detail-row-patient"
       :append-params="moreParams"
       :render-icon="renderIcon"
-      api-url='/api/patients'
+      api-url='/api/visits'
       track-by='patientId'
       @vuetable:cell-dblclicked="onCellDblClicked"
       @vuetable:pagination-data="onPaginationData"
@@ -81,8 +81,8 @@ export default {
       fields: FieldDef,
       sortOrder: [
         {
-          field: 'email',
-          sortField: 'email',
+          field: 'bedNumber',
+          sortField: 'bedNumber',
           direction: 'asc'
         }
       ],
@@ -95,7 +95,7 @@ export default {
     this.$events.listen('filter-set-patient', filterText => this.onFilterSet(filterText))
     eventBus.$on('patient-table-organization-selected', selectedOrg => {
       this.selectedOrg = selectedOrg
-      this.moreParams = { org: selectedOrg.code }
+      this.moreParams = { org: selectedOrg.code, type: 'inpatient' }
       console.log('已选择科室：' + selectedOrg.code + ' ' + selectedOrg.name)
       Vue.nextTick(() => this.$refs.vuetable.refresh())
       // this.$refs.vuetable.refresh()

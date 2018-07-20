@@ -17,6 +17,7 @@
     "axios": "^0.18.0",
     "babel-helper-vue-jsx-merge-props": "^2.0.3",
     "bootstrap": "^3.3.7",
+    "bootstrap-datepicker": "^1.8.0",
     "chartist": "^0.10.1",
     "datatables.net-dt": "^1.10.16",
     "jquery": "^3.3.1",
